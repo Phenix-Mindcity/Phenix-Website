@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Auth;
 use DB;
 use View;
+use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
@@ -17,6 +19,8 @@ class DashboardController extends Controller
         DB::table("users")
             ->where("id", Auth::user()->id)
             ->update(['fullname' => $request->input('name'), "phone" => $request->input('phone'), "locale" => $request->input('pronom')]);
+
+        App::setLocale($request->input('pronom'));
 
         return redirect("/dashboard");
     }
