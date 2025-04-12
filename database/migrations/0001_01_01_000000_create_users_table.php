@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('mfa_enabled');
             $table->string('refresh_token')->nullable();
             $table->string('role')->default("");
-            $table->string('phone')->default("555-????");
+            $table->string('phone')->default("Inconnu");
             $table->string('fullname')->default("");
             $table->integer('rank')->default(0);
             $table->timestamps();
