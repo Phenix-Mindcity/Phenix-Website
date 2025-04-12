@@ -34,6 +34,8 @@ Route::middleware(['auth', checkProfile::class])->group(function () {
     Route::get('/score', [DashboardController::class, 'score'])->name('dashboard.score');
     Route::get('/participants', [DashboardController::class, 'participants'])->name('dashboard.participants');
 
+    Route::post('/putBet', [DashboardController::class, 'putBet']);
+
     Route::middleware([isMembre::class])->group(function () {
         Route::get('/inscription', [DashboardController::class, 'inscription'])->name('dashboard.inscription');
         Route::get('/view_pari', [DashboardController::class, 'view_pari'])->name('dashboard.view_pari');
