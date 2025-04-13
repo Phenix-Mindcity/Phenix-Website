@@ -98,7 +98,7 @@
                                                 <span class="text-xs font-semibold leading-tight">{{ $bet->ecurie }}</span>
                                             </td>
                                             <td class="p-2 text-sm leading-normal align-middle bg-transparent border-b whitespace-nowrap">
-                                                <span class="text-xs font-semibold leading-tight">{{ $bet->montant }}</span>
+                                                <span class="text-xs font-semibold leading-tight">{{ $bet->montant }} $</span>
                                             </td>
                                             <td class="p-2 text-sm leading-normal align-middle bg-transparent border-b whitespace-nowrap">
                                                 @if ($bet->status == 0)
