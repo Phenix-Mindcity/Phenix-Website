@@ -43,6 +43,7 @@ Route::middleware(['auth', checkProfile::class, Language::class])->group(functio
 
         Route::middleware([isCA::class])->group(function () {
             Route::get('/membres', [DashboardController::class, 'membres'])->name('dashboard.membres');
+            Route::get('/validateBet/{BetID}', [DashboardController::class, 'validateBet']);
         });
     });
 });

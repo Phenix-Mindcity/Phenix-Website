@@ -20,21 +20,30 @@ class DashboardController extends Controller
             ->where("id", Auth::user()->id)
             ->update(['fullname' => $request->input('name'), "phone" => $request->input('phone'), "locale" => $request->input('pronom')]);
 
-        App::setLocale($request->input('pronom'));
-
         return redirect("/dashboard");
     }
 
-    public function putBet(Request $request) {
-        DB::table("bet")
-            ->insert([
-                'discord' => Auth::user()->id,
-                'course' => $request->input('course'),
-                'ecurie' => $request->input('ecurie'),
-                'montant' => $request->input('montant'),
-            ]);
+    public function validateBet(Request $request, $BetID) {
+        $bets = DB::table('bet')->where("id", $BetID)->get();
+        if ($bets->first()->status != 0 && $bets->first()->status != 4) return redirect()->back()->withErrors("Tu ne peux pas modifier le statut de ce pari");
 
-        return redirect("/pari");
+        DB::table("bet")
+            ->where("id", $BetID)
+            ->update(['status' => $bets->first()->status+1]);
+
+        return redirect()->back()->with('success', $bets->first()->status == 0 ? 'Le pari a été validé' : 'Le pari a été payé');
+    }
+
+    public function view_pari(Request $request) {
+        $users = DB::table('users')->get();
+        $bets = DB::table('bet')->get();
+        $ecuries = DB::table('ecurie')->get();
+
+        return View::make("dashboard.view_pari")->with([
+            "users" => $users,
+            "bets"=>$bets,
+            "ecuries"=>$ecuries
+        ]);
     }
 
     public function home(Request $request) {
@@ -53,6 +62,18 @@ class DashboardController extends Controller
             "bets"=>$bets,
             "ecuries"=>$ecuries
         ]);
+    }
+
+    public function putBet(Request $request) {
+        DB::table("bet")
+            ->insert([
+                'discord' => Auth::user()->id,
+                'course' => $request->input('course'),
+                'ecurie' => $request->input('ecurie'),
+                'montant' => $request->input('montant'),
+            ]);
+
+        return redirect("/pari");
     }
 
     public function score(Request $request) {
@@ -83,10 +104,6 @@ class DashboardController extends Controller
 
     public function inscription(Request $request) {
         return View::make("dashboard.inscription");
-    }
-
-    public function view_pari(Request $request) {
-        return View::make("dashboard.view_pari");
     }
 
     public function membres(Request $request) {
