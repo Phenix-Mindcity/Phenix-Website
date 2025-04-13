@@ -134,14 +134,18 @@ class DashboardController extends Controller
 
         if ($file) {
             $rules = array(
-                'file' => 'clamav|max:10240|required|image'
+                'logo' => 'clamav|max:10240|required|image',
+                'name' => 'required',
+                'description' => 'required',
             );
 
             $messages = [
-                'file.clamav' => 'Une erreur inconnue est survenue.',
-                'file.required' => 'Vous devez donner votre tierlist.',
-                'file.max' => 'Le fichier est trop gros.',
-                'file.image' => 'Le fichier doit être une image.',
+                'logo.clamav' => 'Une erreur inconnue est survenue.',
+                'logo.required' => 'Vous devez donner un logo valide.',
+                'logo.max' => 'Le fichier est trop gros.',
+                'logo.image' => 'Le fichier doit être une image.',
+                'name.required' => "Vous devez donner le nom",
+                'description.required' => "Vous devez donner une description",
             ];
 
             $validator = Validator::make($request->all(), $rules, $messages);
@@ -150,12 +154,28 @@ class DashboardController extends Controller
                 return redirect()->back()->withErrors($validator);
             }
 
-            Storage::disk('local')->put('/sponsors/' . $request->input('name') . "." . $file->getClientOriginalExtension(), file_get_contents($file));
+            Storage::disk('public')->put('/sponsors/' . $request->input('name') . "." . $file->getClientOriginalExtension(), file_get_contents($file));
 
             DB::table("sponsors")
                 ->where("id", $id)
                 ->update(['name' => $request->input('name'), 'description' => $request->input('description'), 'fileName'=> $request->input('name') . "." . $file->getClientOriginalExtension()]);
         } else {
+            $rules = array(
+                'name' => 'required',
+                'description' => 'required',
+            );
+
+            $messages = [
+                'name.required' => "Vous devez donner le nom",
+                'description.required' => "Vous devez donner une description",
+            ];
+
+            $validator = Validator::make($request->all(), $rules, $messages);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator);
+            }
+
             DB::table("sponsors")
                 ->where("id", $id)
                 ->update(['name' => $request->input('name'), 'description' => $request->input('description')]);
@@ -165,18 +185,19 @@ class DashboardController extends Controller
     }
 
     public function createSponsor(Request $request) {
-
-
-
         $rules = array(
-            'file' => 'max:10240|required|image'
+            'logo' => 'clamav|max:10240|required|image',
+            'name' => 'required',
+            'description' => 'required',
         );
 
         $messages = [
-            //'file.clamav' => 'Une erreur inconnue est survenue.',
-            'file.required' => 'Vous devez donner un logo valide.',
-            'file.max' => 'Le fichier est trop gros.',
-            'file.image' => 'Le fichier doit être une image.',
+            'logo.clamav' => 'Une erreur inconnue est survenue.',
+            'logo.required' => 'Vous devez donner un logo valide.',
+            'logo.max' => 'Le fichier est trop gros.',
+            'logo.image' => 'Le fichier doit être une image.',
+            'name.required' => "Vous devez donner le nom",
+            'description.required' => "Vous devez donner une description",
         ];
 
         $file = $request->file('logo');
@@ -188,7 +209,7 @@ class DashboardController extends Controller
         }
 
 
-        Storage::disk('local')->put('/sponsors/' . $request->input('name') . "." . $file->getClientOriginalExtension(), file_get_contents($file));
+        Storage::disk('public')->put('/sponsors/' . $request->input('name') . "." . $file->getClientOriginalExtension(), file_get_contents($file));
 
         DB::table("sponsors")
             ->insert([
