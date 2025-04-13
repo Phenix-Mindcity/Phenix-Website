@@ -138,7 +138,7 @@
                               <div class="w-full max-w-full shrink-0 md:w-full md:flex-0 px-3">
                                   <label for="montant" class="mb-2 ml-1 font-bold text-xs text-slate-700">Montant</label>
                                   <input required type="number" name="montant" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"></input>
-                                  <small><br>Une fois votre pari posé, vous ne pouvez plus annuler et vous devez verser le montant due au trésorier de l'association<br><b>Veillez à indiquer votre numéro de téléphone</b></small>
+                                  <small><br>Une fois votre pari posé, vous ne pouvez plus annuler et vous devez verser le montant due au trésorier de l'association<br><b>Veillez à indiquer votre numéro de téléphone sur votre profil</b></small>
                               </div>
                                 <div class="flex flex-wrap -mx-3 mt-4 w-full mb-4">
                                     <div class="mt-4 ml-4 w-full lg:flex-none flex flex-col items-center">
