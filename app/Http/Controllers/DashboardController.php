@@ -130,21 +130,25 @@ class DashboardController extends Controller
     }
 
     public function editSponsorPost(Request $request, $id) {
-        $rules = array(
-            'file' => 'clamav|max:10240|required|image'
-        );
-
-        $messages = [
-            'file.clamav' => 'Une erreur inconnue est survenue.',
-            'file.required' => 'Vous devez donner votre tierlist.',
-            'file.max' => 'Le fichier est trop gros.',
-            'file.image' => 'Le fichier doit être une image.',
-        ];
-
         $file = $request->file('logo');
 
         if ($file) {
+            $rules = array(
+                'file' => 'clamav|max:10240|required|image'
+            );
+
+            $messages = [
+                'file.clamav' => 'Une erreur inconnue est survenue.',
+                'file.required' => 'Vous devez donner votre tierlist.',
+                'file.max' => 'Le fichier est trop gros.',
+                'file.image' => 'Le fichier doit être une image.',
+            ];
+
             $validator = Validator::make($request->all(), $rules, $messages);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator);
+            }
 
             Storage::disk('local')->put('/sponsors/' . $request->input('name') . "." . $file->getClientOriginalExtension(), file_get_contents($file));
 
@@ -161,13 +165,16 @@ class DashboardController extends Controller
     }
 
     public function createSponsor(Request $request) {
+
+
+
         $rules = array(
-            'file' => 'clamav|max:10240|required|image'
+            'file' => 'max:10240|required|image'
         );
 
         $messages = [
-            'file.clamav' => 'Une erreur inconnue est survenue.',
-            'file.required' => 'Vous devez donner votre tierlist.',
+            //'file.clamav' => 'Une erreur inconnue est survenue.',
+            'file.required' => 'Vous devez donner un logo valide.',
             'file.max' => 'Le fichier est trop gros.',
             'file.image' => 'Le fichier doit être une image.',
         ];
@@ -175,6 +182,11 @@ class DashboardController extends Controller
         $file = $request->file('logo');
 
         $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
 
         Storage::disk('local')->put('/sponsors/' . $request->input('name') . "." . $file->getClientOriginalExtension(), file_get_contents($file));
 
