@@ -40,6 +40,7 @@ Route::middleware(['auth', checkProfile::class, Language::class])->group(functio
     Route::middleware([isMembre::class])->group(function () {
         Route::get('/inscription', [DashboardController::class, 'inscription'])->name('dashboard.inscription');
         Route::get('/view_pari', [DashboardController::class, 'view_pari'])->name('dashboard.view_pari');
+        Route::get('/result', [DashboardController::class, 'result'])->name('dashboard.result');
 
         Route::middleware([isCA::class])->group(function () {
             Route::get('/membres', [DashboardController::class, 'membres'])->name('dashboard.membres');

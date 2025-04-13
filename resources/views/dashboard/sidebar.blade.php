@@ -65,6 +65,14 @@
                     <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Vue des pari</span>
                 </a>
             </li>
+            <li class="mt-0.5 w-full">
+                <a href="{{ route('dashboard.result') }}" class="{{ (request()->is('result')) ? 'rounded-lg bg-white font-semibold text-slate-700 shadow-soft-xl' : '' }} px-4 py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap transition-colors">
+                    <div class="{{ (request()->is('result')) ? 'bg-gradient-to-tl from-purple-700 to-pink-500' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                        <span class="{{ (request()->is('result')) ? 'text-white' : '' }} material-symbols-outlined">sports_score</span>
+                    </div>
+                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Résultats</span>
+                </a>
+            </li>
             @if (auth()->user()->rank >= 10)
             <li class="mt-0.5 w-full">
                 <a href="{{ route('dashboard.membres') }}" class="{{ (request()->is('membres')) ? 'rounded-lg bg-white font-semibold text-slate-700 shadow-soft-xl' : '' }} px-4 py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap transition-colors">

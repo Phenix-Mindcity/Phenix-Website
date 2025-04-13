@@ -35,8 +35,9 @@ class DashboardController extends Controller
     }
 
     public function view_pari(Request $request) {
+        $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
         $users = DB::table('users')->get();
-        $bets = DB::table('bet')->get();
+        $bets = DB::table('bet')->where("course", $currentCourse->name)->get();
         $ecuries = DB::table('ecurie')->get();
 
         return View::make("dashboard.view_pari")->with([
@@ -55,7 +56,8 @@ class DashboardController extends Controller
     }
 
     public function pari(Request $request) {
-        $bets = DB::table('bet')->where("discord", Auth::user()->id)->get();
+        $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
+        $bets = DB::table('bet')->where("discord", Auth::user()->id)->where("course", $currentCourse->name)->get();
         $ecuries = DB::table('ecurie')->get();
 
         return View::make("dashboard.pari")->with([
@@ -77,6 +79,8 @@ class DashboardController extends Controller
     }
 
     public function score(Request $request) {
+        $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
+        $users = DB::table('users')->get();
         $scores = DB::table('score')->get();
         $finalScore = array();
 
@@ -86,13 +90,17 @@ class DashboardController extends Controller
         }
 
         return View::make("dashboard.score")->with([
-            "scores"=>$finalScore
+            "currentCourse"=>$currentCourse,
+            "users"=>$users,
+            "globalScores"=>$finalScore,
+            "scores"=>$scores
         ]);
     }
 
     public function participants(Request $request) {
+        $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
         $users = DB::table('users')->get();
-        $pilotes = DB::table('pilotes')->get();
+        $pilotes = DB::table('pilotes')->where("course", $currentCourse->name)->get();
         $ecuries = DB::table('ecurie')->get();
 
         return View::make("dashboard.participants")->with([

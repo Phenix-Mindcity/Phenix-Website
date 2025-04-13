@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('discord');
             $table->string('course');
+            $table->string('place');
             $table->string('ecurie');
             $table->integer('score');
         });
