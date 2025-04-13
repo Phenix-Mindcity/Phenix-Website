@@ -6,7 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
+use URL;
 use Auth;
 use DB;
 use View;
@@ -111,6 +114,119 @@ class DashboardController extends Controller
             "pilotes"=>$pilotes,
             "ecuries"=>$ecuries
         ]);
+    }
+
+    public function membres(Request $request) {
+        $members = DB::table('users')->where("rank", ">=", 5)->get();
+
+        return View::make("dashboard.members")->with([
+            "members"=>$members
+        ]);
+    }
+
+    public function addMember(Request $request) {
+        $rules = array(
+            'photo' => 'clamav|max:10240|required|mimes:png',
+        );
+
+        $messages = [
+            'photo.clamav' => 'Une erreur inconnue est survenue.',
+            'photo.required' => 'Vous devez donner un logo valide.',
+            'photo.max' => 'Le fichier est trop gros.',
+            'photo.mimes' => 'Le fichier doit être un PNG.',
+        ];
+
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $file = $request->file('photo');
+
+        Storage::disk('public')->put('/profile/' . $request->input('name') . ".png", file_get_contents($file));
+
+        $token = Str::random(32);
+        Cache::add($token, now()->addMinutes(60));
+
+        return redirect()->back()->with('success', "Pour ajouter un membre, donner lui ce lien : " . URL::to("/join/".$token));
+    }
+
+    public function join(Request $request, $token) {
+        if (Cache::get($token) == null) return redirect("/dashboard")->withErrors(["Le lien est invalide"]);
+
+        Cache::delete($token);
+
+        DB::table("users")
+            ->where("id", Auth::user()->id)
+            ->update(['rank' => 5]);
+
+        return redirect()->back()->with('success', "Bienvenue au sein de l'association !");
+    }
+
+    public function editMember(Request $request, $id) {
+        $member = DB::table('users')->where("id", $id)->get();
+
+        return View::make("dashboard.editMember")->with([
+            "member"=> $member->first()
+        ]);
+    }
+
+
+    public function editMemberPost(Request $request, $id) {
+        $file = $request->file('photo');
+
+        if ($file) {
+            $rules = array(
+                'photo' => 'clamav|max:10240|required|mimes:png',
+                'rank' => 'required',
+                'role' => 'required',
+            );
+
+            $messages = [
+                'photo.clamav' => 'Une erreur inconnue est survenue.',
+                'photo.required' => 'Vous devez donner un logo valide.',
+                'photo.max' => 'Le fichier est trop gros.',
+                'photo.mimes' => 'Le fichier doit être un PNG.',
+                'rank.required' => "Vous devez donner le nom",
+                'role.required' => "Vous devez donner une description",
+            ];
+
+            $validator = Validator::make($request->all(), $rules, $messages);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator);
+            }
+
+            Storage::disk('public')->put('/profile/' . $request->input('name') . ".png", file_get_contents($file));
+
+            DB::table("users")
+                ->where("id", $id)
+                ->update(['rank' => $request->input('rank'), 'role' => $request->input('role')]);
+        } else {
+            $rules = array(
+                'rank' => 'required',
+                'role' => 'required',
+            );
+
+            $messages = [
+                'rank.required' => "Vous devez donner le nom",
+                'role.required' => "Vous devez donner une description",
+            ];
+
+            $validator = Validator::make($request->all(), $rules, $messages);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator);
+            }
+
+            DB::table("users")
+                ->where("id", $id)
+                ->update(['rank' => $request->input('rank'), 'role' => $request->input('role')]);
+        }
+
+        return redirect("/membres")->with('success', "Le membre a bien été modifié");
     }
 
     public function sponsor(Request $request) {
@@ -225,7 +341,4 @@ class DashboardController extends Controller
         return View::make("dashboard.inscription");
     }
 
-    public function membres(Request $request) {
-        return View::make("dashboard.membres");
-    }
 }

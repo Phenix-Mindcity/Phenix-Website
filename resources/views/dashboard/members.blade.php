@@ -47,25 +47,52 @@
       <!-- Navbar -->
       @include("dashboard.navbar")
       <!-- end Navbar -->
-        <div class="w-full px-6 py-6 mx-auto">
-        @if(session('success'))
-            <div class="relative w-full p-4 text-white rounded-lg bg-emerald-500">{{ session('success') }}</div>
-        @endif
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                <div class="relative w-full p-4 text-white bg-red-600 rounded-lg">Erreur : {{ $error }}</div>
-            @endforeach
-        @endif
         <!-- cards -->
+        <!-- row 1 -->
         <div class="w-full px-6 py-6 mx-auto">
-            <!-- row 1 -->
+            @if(session('success'))
+                <div class="relative w-full p-4 text-white rounded-lg bg-emerald-500">{{ session('success') }}</div>
+            @endif
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="relative w-full p-4 text-white bg-red-600 rounded-lg">Erreur : {{ $error }}</div>
+                @endforeach
+            @endif
             <div class="flex flex-wrap my-6 -mx-3">
-                <div class="w-full max-w-full px-3 mt-0 mb-6 md:mb-0 w-7/12">
-                    <div class="border-black/12.5 shadow-soft-xl relative flex min-w-0 flex-col break-words rounded-2xl border-0 border-solid bg-white bg-clip-border">
-                        <div class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid bg-white p-6 pb-0">
-                            <div class="flex flex-wrap mt-0 -mx-3">
-                                <div class="flex-none w-7/12 max-w-full px-3 mt-0 lg:w-1/2 lg:flex-none">
-                                    <h6>Membres</h6>
+                <div class="w-full max-w-full px-3 lg-max:mt-6 w-full">
+                    <div class="relative flex flex-col h-full min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
+                        <div class="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl">
+                            <div class="flex flex-wrap -mx-3">
+                                <div class="flex items-center w-full max-w-full px-3 shrink-0 md:w-8/12 md:flex-none">
+                                    <h6 class="mb-0">Ajouter un membre</h6>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex-auto p-4">
+                            <form method="POST" action="addMember" enctype="multipart/form-data">
+                                @csrf
+                                <div class="flex flex-wrap -mx-3 px-6 mt-4">
+                                  <div class="w-full max-w-full shrink-0 md:w-full md:flex-0 px-3">
+                                      <label for="photo" class="mb-2 ml-1 font-bold text-xs text-slate-700">Photo</label>
+                                      <input required name="photo" dropzone type="file" placeholder="Envoyer le fichier..." class="dark:bg-slate-900 dark:text-white dark:bg-gray-950 mb-4 focus:shadow-primary-outline dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">                            </div>
+                                  </div>
+                                    <div class="flex flex-wrap -mx-3 mt-4 w-full mb-4">
+                                        <div class="mt-4 ml-4 w-full lg:flex-none flex flex-col items-center">
+                                            <button type="submit" class="inline-block px-8 py-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Ajouter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <div class="flex flex-wrap my-6 -mx-3">
+                <div class="w-full max-w-full px-3 lg-max:mt-6 w-full">
+                    <div class="relative flex flex-col h-full min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
+                        <div class="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl">
+                            <div class="flex flex-wrap -mx-3">
+                                <div class="flex items-center w-full max-w-full px-3 shrink-0 md:w-8/12 md:flex-none">
+                                    <h6 class="mb-0">Membres</h6>
                                 </div>
                             </div>
                         </div>
@@ -78,6 +105,7 @@
                                             <th class="px-6 py-3 pl-2 text-center font-bold tracking-normal text-left uppercase align-middle bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70">Nom</th>
                                             <th class="px-6 py-3 pl-2 text-center font-bold tracking-normal text-left uppercase align-middle bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70">Numéro de téléphone</th>
                                             <th class="px-6 py-3 pl-2 text-center font-bold tracking-normal text-left uppercase align-middle bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70">Rôle</th>
+                                            <th class="px-6 py-3 pl-2 text-center font-bold tracking-normal text-left uppercase align-middle bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -95,39 +123,16 @@
                                             <td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap">
                                                 <span class="text-xs font-semibold leading-tight">{{ $member->role }}</span>
                                             </td>
+                                            <td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap">
+                                                <a href="/editMember/{{ $member->id }}">
+                                                    <button type="button" class="inline-block px-4 py-2 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Modifier</button>
+                                                </a>
+                                            </td>
                                         </tr>
                                         @endforeach
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full max-w-full px-3 lg-max:mt-6 w-5/12">
-                    <div class="relative flex flex-col h-full min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-2xl bg-clip-border">
-                        <div class="p-4 pb-0 mb-0 bg-white border-b-0 rounded-t-2xl">
-                            <div class="flex flex-wrap -mx-3">
-                                <div class="flex items-center w-full max-w-full px-3 shrink-0 md:w-8/12 md:flex-none">
-                                    <h6 class="mb-0">Mes informations</h6>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex-auto p-4">
-                            <ul class="flex flex-col pl-0 mb-0 rounded-lg">
-                                <li class="relative block px-4 py-2 pt-0 pl-0 leading-normal bg-white border-0 rounded-t-lg text-sm text-inherit"><strong class="text-slate-700">Nom: </strong> &nbsp; {{ auth()->user()->fullname }}</li>
-                                <li class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong class="text-slate-700">Mobile :</strong> &nbsp; {{ auth()->user()->phone }}</li>
-                                <li class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong class="text-slate-700">Pronom :</strong> &nbsp; {{ ucfirst(auth()->user()->locale) }}</li>
-                                @if (auth()->user()->rank >= 0)
-                                <li class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong class="text-slate-700">Rôle :</strong> &nbsp; {{ auth()->user()->rank == 1 ? "Pilote (" . auth()->user()->role . ")" : auth()->user()->role }}</li>
-                                @endif
-                                <div class="flex flex-wrap -mx-3 mt-4 w-full">
-                                    <div class="mt-4 ml-4 w-full lg:flex-none flex flex-col items-center">
-                                        <a href="/profile">
-                                            <button type="button" class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Modifier mes informations</button>
-                                        </a>
-                                    </div>
-                                </div>
-                            </ul>
                         </div>
                     </div>
                 </div>

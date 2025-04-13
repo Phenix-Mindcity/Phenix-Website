@@ -35,6 +35,8 @@ Route::middleware(['auth', checkProfile::class, Language::class])->group(functio
     Route::get('/score', [DashboardController::class, 'score'])->name('dashboard.score');
     Route::get('/participants', [DashboardController::class, 'participants'])->name('dashboard.participants');
 
+    Route::get('/join/{token}', [DashboardController::class, 'join']);
+
     Route::post('/putBet', [DashboardController::class, 'putBet']);
 
     Route::middleware([isMembre::class])->group(function () {
@@ -49,6 +51,10 @@ Route::middleware(['auth', checkProfile::class, Language::class])->group(functio
 
         Route::middleware([isCA::class])->group(function () {
             Route::get('/membres', [DashboardController::class, 'membres'])->name('dashboard.membres');
+            Route::get('/editMember/{id}', [DashboardController::class, 'editMember']);
+            Route::post('/addMember', [DashboardController::class, 'addMember']);
+            Route::post('/editMember/{id}', [DashboardController::class, 'editMemberPost']);
+
             Route::get('/validateBet/{BetID}', [DashboardController::class, 'validateBet']);
         });
     });

@@ -47,7 +47,15 @@
       <!-- Navbar -->
       @include("dashboard.navbar")
       <!-- end Navbar -->
-
+        <div class="w-full px-6 py-6 mx-auto">
+        @if(session('success'))
+            <div class="relative w-full p-4 text-white rounded-lg bg-emerald-500">{{ session('success') }}</div>
+        @endif
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="relative w-full p-4 text-white bg-red-600 rounded-lg">Erreur : {{ $error }}</div>
+            @endforeach
+        @endif
         <!-- cards -->
         <div class="w-full px-6 py-6 mx-auto">
             <!-- row 1 -->

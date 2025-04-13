@@ -46,6 +46,15 @@
     <main class="ease-soft-in-out xl:ml-68.5 relative h-full max-h-screen rounded-xl transition-all duration-200">
       <!-- Navbar -->
       @include("dashboard.navbar")
+        <div class="w-full px-6 py-6 mx-auto">
+        @if(session('success'))
+            <div class="relative w-full p-4 text-white rounded-lg bg-emerald-500">{{ session('success') }}</div>
+        @endif
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                <div class="relative w-full p-4 text-white bg-red-600 rounded-lg">Erreur : {{ $error }}</div>
+            @endforeach
+        @endif
       <!-- end Navbar -->
         <!-- cards -->
         <div class="w-full px-6 py-6 mx-auto">

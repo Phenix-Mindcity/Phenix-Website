@@ -65,34 +65,36 @@
                         <div class="border-black/12.5 mb-0 rounded-t-2xl border-b-0 border-solid bg-white p-6 pb-0">
                             <div class="flex flex-wrap mt-0 -mx-3">
                                 <div class="flex-none w-7/12 max-w-full px-3 mt-0 lg:w-1/2 lg:flex-none">
-                                    <h6>Modifier mes informations</h6>
+                                    <h6>Modifier le membre</h6>
                                 </div>
                             </div>
                         </div>
                         <div class="flex-auto p-6 px-0 pb-2">
-                            <form method="POST" action="/editProfile">
+                            <form method="POST" action="/editMember/{{ $member->id }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="flex flex-wrap -mx-3 px-6">
                                   <div class="w-full max-w-full shrink-0 md:w-6/12 md:flex-0 px-3">
-                                      <label for="name" class="mb-2 ml-1 font-bold text-xs text-slate-700">Nom complet (prénom nom)</label>
-                                      <input required type="text" name="name" value="{{ auth()->user()->fullname }}" placeholder="Votre prénom et nom" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"></input>
-                                  </div>
-                                  <div class="w-full max-w-full shrink-0 md:w-6/12 md:flex-0 px-3">
-                                      <label for="name" class="mb-2 ml-1 font-bold text-xs text-slate-700">Pronom</label>
-                                      <select required name="pronom" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none">
-                                        <option {{ auth()->user()->locale == 'iel' ? 'selected' : '' }} value="iel">Iel</option>
-                                        <option {{ auth()->user()->locale == "il" ? 'selected' : '' }} value="il">Il</option>
-                                        <option {{ auth()->user()->locale == "elle" ? 'selected' : '' }} value="elle">Elle</option>
+                                      <label for="rank" class="mb-2 ml-1 font-bold text-xs text-slate-700">Accès</label>
+                                      <select required name="rank" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none">
+                                        <option value="0" {{ $member->rank == 0 ? "required" : "" }}>Aucun accès</option>
+                                        <option value="5" {{ $member->rank == 5 ? "required" : "" }}>Membre de l'association</option>
+                                        <option value="6" {{ $member->rank == 6 ? "required" : "" }}>Organisation de l'évènement</option>
+                                        <option value="10" {{ ($member->rank >= 10 || $member->rank < 15) ? "required" : "" }}>Conseil d'administration</option>
+                                        <option value="15" {{ $member->rank > 15 ? "required" : "" }}>Présidence</option>
                                       </select>
                                   </div>
-                                  <div class="w-full max-w-full shrink-0 md:w-full md:flex-0 px-3 mt-4">
-                                      <label for="phone" class="mb-2 ml-1 text-xs text-slate-700"><span class="font-bold">Numéro de téléphone</span><br><small>Optionnel, obligatoire pour parier</small></label>
-                                      <input type="text" name="phone" value="{{ auth()->user()->phone }}" placeholder="555-XXXX" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"></input>
+                                  <div class="w-full max-w-full shrink-0 md:w-6/12 md:flex-0 px-3">
+                                      <label for="role" class="mb-2 ml-1 font-bold text-xs text-slate-700">Rôle</label>
+                                      <input required value="{{ $member->role }}" type="input" name="role" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"></input>
                                   </div>
-                                </div>
-                                <div class="flex flex-wrap -mx-3 mt-4 w-full">
-                                    <div class="mt-4 ml-4 w-full lg:flex-none flex flex-col items-center">
-                                        <button type="submit" class="inline-block px-6 py-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Modifier</button>
+                                  <div class="w-full max-w-full shrink-0 md:w-full md:flex-0 px-3">
+                                      <label for="photo" class="mb-2 ml-1 font-bold text-xs text-slate-700">Logo (laissez vide pour ne pas modifier)</label>
+                                      <input name="photo" dropzone type="file" placeholder="Envoyer le fichier..." class="dark:bg-slate-900 dark:text-white dark:bg-gray-950 mb-4 focus:shadow-primary-outline dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">                            </div>
+                                  </div>
+                                    <div class="flex flex-wrap -mx-3 mt-4 w-full mb-4">
+                                        <div class="mt-4 ml-4 w-full lg:flex-none flex flex-col items-center">
+                                            <button type="submit" class="inline-block px-8 py-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Modifier le membre</button>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
