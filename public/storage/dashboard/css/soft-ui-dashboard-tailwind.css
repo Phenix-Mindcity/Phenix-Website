@@ -1296,6 +1296,10 @@ h6 {
   height: 9rem;
 }
 
+.h-32 {
+    height: 12rem;
+}
+
 .h-6\.35 {
   height: 1.5875rem;
 }
@@ -1463,6 +1467,11 @@ h6 {
 .w-24 {
     width: 9rem;
 }
+
+.w-32 {
+    width: 12rem;
+}
+
 
 .w-6\.35 {
   width: 1.5875rem;

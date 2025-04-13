@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Auth;
 use DB;
 use View;
@@ -108,6 +111,81 @@ class DashboardController extends Controller
             "pilotes"=>$pilotes,
             "ecuries"=>$ecuries
         ]);
+    }
+
+    public function sponsor(Request $request) {
+        $sponsors = DB::table('sponsors')->get();
+
+        return View::make("dashboard.sponsor")->with([
+            "sponsors"=>$sponsors
+        ]);
+    }
+
+    public function editSponsor(Request $request, $id) {
+        $sponsor = DB::table('sponsors')->where("id", $id)->get();
+
+        return View::make("dashboard.editSponsor")->with([
+            "sponsor"=>$sponsor->first()
+        ]);
+    }
+
+    public function editSponsorPost(Request $request, $id) {
+        $rules = array(
+            'file' => 'clamav|max:10240|required|image'
+        );
+
+        $messages = [
+            'file.clamav' => 'Une erreur inconnue est survenue.',
+            'file.required' => 'Vous devez donner votre tierlist.',
+            'file.max' => 'Le fichier est trop gros.',
+            'file.image' => 'Le fichier doit être une image.',
+        ];
+
+        $file = $request->file('logo');
+
+        if ($file) {
+            $validator = Validator::make($request->all(), $rules, $messages);
+
+            Storage::disk('local')->put('/sponsors/' . $request->input('name') . "." . $file->getClientOriginalExtension(), file_get_contents($file));
+
+            DB::table("sponsors")
+                ->where("id", $id)
+                ->update(['name' => $request->input('name'), 'description' => $request->input('description'), 'fileName'=> $request->input('name') . "." . $file->getClientOriginalExtension()]);
+        } else {
+            DB::table("sponsors")
+                ->where("id", $id)
+                ->update(['name' => $request->input('name'), 'description' => $request->input('description')]);
+        }
+
+        return redirect("/sponsor")->with('success', "Le sponsor a bien été modifié");
+    }
+
+    public function createSponsor(Request $request) {
+        $rules = array(
+            'file' => 'clamav|max:10240|required|image'
+        );
+
+        $messages = [
+            'file.clamav' => 'Une erreur inconnue est survenue.',
+            'file.required' => 'Vous devez donner votre tierlist.',
+            'file.max' => 'Le fichier est trop gros.',
+            'file.image' => 'Le fichier doit être une image.',
+        ];
+
+        $file = $request->file('logo');
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        Storage::disk('local')->put('/sponsors/' . $request->input('name') . "." . $file->getClientOriginalExtension(), file_get_contents($file));
+
+        DB::table("sponsors")
+            ->insert([
+                'name' => $request->input('name'),
+                'description' => $request->input('description'),
+                'fileName' => $request->input('name') . "." . $file->getClientOriginalExtension(),
+            ]);
+
+        return redirect()->back()->with('success', "Le sponsor a bien été ajouté");
     }
 
     public function inscription(Request $request) {
