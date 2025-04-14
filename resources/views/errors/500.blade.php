@@ -21,7 +21,7 @@
 
 <center>
     <a href="/dashboard">
-        <img src="/storage/img/logo.png" style="width: 25%; height: auto" alt="Logo"><br>
+        <img src="/storage/img/logo.png" style="width: 35%; height: auto" alt="Logo"><br>
     </a>
     <h1 class="kode-mono">500 - Une erreur est survenue</h1>
     <a href="{{ url()->previous() }}">
