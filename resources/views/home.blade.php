@@ -91,12 +91,12 @@
             </p>
           </div>
           <div class="w-full sm:w-1/2 p-6">
-            <img src="{{ url('storage/img/omnis.jpg') }}">
+            <img src="{{ url('storage/img/cars/omnis.jpg') }}">
           </div>
         </div>
         <div class="flex flex-wrap flex-col-reverse sm:flex-row">
           <div class="w-full sm:w-1/2 p-6 mt-6">
-            <img src="{{ url('storage/img/omnis.jpg') }}">
+            <img src="{{ url('storage/img/cars/bati.jpg') }}">
           </div>
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
@@ -123,12 +123,12 @@
             </p>
           </div>
           <div class="w-full sm:w-1/2 p-6">
-            <img src="{{ url('storage/img/omnis.jpg') }}">
+            <img src="{{ url('storage/img/cars/sultan.webp') }}">
           </div>
         </div>
         <div class="flex flex-wrap flex-col-reverse sm:flex-row">
           <div class="w-full sm:w-1/2 p-6 mt-6">
-            <img src="{{ url('storage/img/omnis.jpg') }}">
+            <img src="{{ url('storage/img/cars/f1.webp') }}">
           </div>
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
@@ -157,7 +157,7 @@
             </p>
           </div>
           <div class="w-full sm:w-1/2 p-6">
-            <img src="{{ url('storage/img/omnis.jpg') }}">
+            <img src="{{ url('storage/img/cars/jester.webp') }}">
           </div>
         </div>
       </div>
