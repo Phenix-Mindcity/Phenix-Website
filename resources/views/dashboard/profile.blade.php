@@ -78,16 +78,10 @@
                                       <input required type="text" name="name" value="{{ auth()->user()->fullname }}" placeholder="Votre prénom et nom" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"></input>
                                   </div>
                                   <div class="w-full max-w-full shrink-0 md:w-6/12 md:flex-0 px-3">
-                                      <label for="name" class="mb-2 ml-1 font-bold text-xs text-slate-700">Pronom</label>
-                                      <select required name="pronom" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none">
-                                        <option {{ auth()->user()->locale == 'iel' ? 'selected' : '' }} value="iel">Iel</option>
-                                        <option {{ auth()->user()->locale == "il" ? 'selected' : '' }} value="il">Il</option>
-                                        <option {{ auth()->user()->locale == "elle" ? 'selected' : '' }} value="elle">Elle</option>
-                                      </select>
-                                  </div>
-                                  <div class="w-full max-w-full shrink-0 md:w-full md:flex-0 px-3 mt-4">
-                                      <label for="phone" class="mb-2 ml-1 text-xs text-slate-700"><span class="font-bold">Numéro de téléphone</span><br><small>Optionnel, obligatoire pour parier</small></label>
+                                      <label for="phone" class="mb-2 ml-1 text-xs text-slate-700"><span class="font-bold">Numéro de téléphone</span></label>
                                       <input type="text" name="phone" value="{{ auth()->user()->phone }}" placeholder="555-XXXX" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"></input>
+                                      <label for="phone" class="mb-2 ml-1 text-xs text-slate-700"><br><small>Optionnel, obligatoire pour parier</small></label>
+
                                   </div>
                                 </div>
                                 <div class="flex flex-wrap -mx-3 mt-4 w-full">

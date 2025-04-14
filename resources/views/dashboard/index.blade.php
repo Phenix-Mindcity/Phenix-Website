@@ -116,7 +116,6 @@
                             <ul class="flex flex-col pl-0 mb-0 rounded-lg">
                                 <li class="relative block px-4 py-2 pt-0 pl-0 leading-normal bg-white border-0 rounded-t-lg text-sm text-inherit"><strong class="text-slate-700">Nom: </strong> &nbsp; {{ auth()->user()->fullname }}</li>
                                 <li class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong class="text-slate-700">Mobile :</strong> &nbsp; {{ auth()->user()->phone }}</li>
-                                <li class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong class="text-slate-700">Pronom :</strong> &nbsp; {{ ucfirst(auth()->user()->locale) }}</li>
                                 @if (auth()->user()->rank >= 0)
                                 <li class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit"><strong class="text-slate-700">Rôle :</strong> &nbsp; {{ auth()->user()->rank == 1 ? "Pilote (" . auth()->user()->role . ")" : auth()->user()->role }}</li>
                                 @endif
