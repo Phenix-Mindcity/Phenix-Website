@@ -50,6 +50,12 @@ Route::middleware(['auth', checkProfile::class])->group(function () {
         Route::post('/editSponsor/{id}', [DashboardController::class, 'editSponsorPost']);
         Route::get('/deleteSponsor/{id}', [DashboardController::class, 'deleteSponsor']);
 
+        Route::get('/ecurie', [DashboardController::class, 'ecurie'])->name('dashboard.ecurie');
+        Route::get('/editEcurie/{id}', [DashboardController::class, 'editEcurie']);
+        Route::post('/createEcurie', [DashboardController::class, 'createEcurie']);
+        Route::post('/editEcurie/{id}', [DashboardController::class, 'editEcuriePost']);
+        Route::get('/deleteEcurie/{id}', [DashboardController::class, 'deleteEcurie']);
+
         Route::middleware([isCA::class])->group(function () {
             Route::get('/membres', [DashboardController::class, 'membres'])->name('dashboard.membres');
             Route::get('/editMember/{id}', [DashboardController::class, 'editMember']);

@@ -245,12 +245,6 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function deleteSponsor(Request $request, $id) {
-        DB::table('sponsors')->delete($id);
-
-        return redirect("/sponsor")->with('success', "Le sponsor a bien été supprimé");
-    }
-
     public function editSponsorPost(Request $request, $id) {
         $file = $request->file('logo');
 
@@ -342,6 +336,131 @@ class DashboardController extends Controller
 
         return redirect()->back()->with('success', "Le sponsor a bien été ajouté");
     }
+
+    public function deleteSponsor(Request $request, $id) {
+        DB::table('sponsors')->delete($id);
+
+        return redirect("/sponsor")->with('success', "Le sponsor a bien été supprimé");
+    }
+
+    public function ecurie(Request $request) {
+        $ecuries = DB::table('ecurie')->get();
+        $sponsors = DB::table('sponsors')->get();
+
+        return View::make("dashboard.ecurie")->with([
+            "ecuries"=>$ecuries,
+            "sponsors"=>$sponsors
+        ]);
+    }
+
+    public function editEcurie(Request $request, $id) {
+        $ecurie = DB::table('ecurie')->where("id", $id)->get();
+        $sponsors = DB::table('sponsors')->get();
+
+        return View::make("dashboard.editEcurie")->with([
+            "ecurie"=>$ecurie->first(),
+            "sponsors"=>$sponsors
+        ]);
+    }
+
+    public function editEcuriePost(Request $request, $id) {
+        $file = $request->file('logo');
+
+        if ($file) {
+            $rules = array(
+                'logo' => 'clamav|max:10240|required|image',
+                'name' => 'required',
+                'sponsor' => 'required',
+            );
+
+            $messages = [
+                'logo.clamav' => 'Une erreur inconnue est survenue.',
+                'logo.required' => 'Vous devez donner un logo valide.',
+                'logo.max' => 'Le fichier est trop gros.',
+                'logo.image' => 'Le fichier doit être une image.',
+                'name.required' => "Vous devez donner le nom",
+                'sponsor.required' => "Vous devez donner  un sponsor valide",
+            ];
+
+            $validator = Validator::make($request->all(), $rules, $messages);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator);
+            }
+
+            Storage::disk('public')->put('/ecuries/' . $request->input('name') . "." . $file->getClientOriginalExtension(), file_get_contents($file));
+
+            DB::table("ecurie")
+                ->where("id", $id)
+                ->update(['name' => $request->input('name'), 'sponsor' => $request->input('sponsor'), 'fileName'=> $request->input('name') . "." . $file->getClientOriginalExtension()]);
+        } else {
+            $rules = array(
+                'name' => 'required',
+                'sponsor' => 'required',
+            );
+
+            $messages = [
+                'name.required' => "Vous devez donner le nom",
+                'sponsor.required' => "Vous devez donner un sponsor valide",
+            ];
+
+            $validator = Validator::make($request->all(), $rules, $messages);
+
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator);
+            }
+
+            DB::table("ecurie")
+                ->where("id", $id)
+                ->update(['name' => $request->input('name'), 'sponsor' => $request->input('sponsor')]);
+        }
+
+        return redirect("/ecurie")->with('success', "L'écurie a bien été modifié");
+    }
+
+    public function createEcurie(Request $request) {
+        $rules = array(
+            'logo' => 'clamav|max:10240|required|image',
+            'name' => 'required',
+            'sponsor' => 'required',
+        );
+
+        $messages = [
+            'logo.clamav' => 'Une erreur inconnue est survenue.',
+            'logo.required' => 'Vous devez donner un logo valide.',
+            'logo.max' => 'Le fichier est trop gros.',
+            'logo.image' => 'Le fichier doit être une image.',
+            'name.required' => "Vous devez donner le nom",
+            'sponsor.required' => "Vous devez donner une description",
+        ];
+
+        $file = $request->file('logo');
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+
+        Storage::disk('public')->put('/ecuries/' . $request->input('name') . "." . $file->getClientOriginalExtension(), file_get_contents($file));
+
+        DB::table("ecurie")
+            ->insert([
+                'name' => $request->input('name'),
+                'sponsor' => $request->input('sponsor'),
+                'fileName' => $request->input('name') . "." . $file->getClientOriginalExtension(),
+            ]);
+
+        return redirect()->back()->with('success', "L'écurie a bien été ajouté");
+    }
+
+    public function deleteEcurie(Request $request, $id) {
+        DB::table('ecurie')->delete($id);
+
+        return redirect("/ecurie")->with('success', "L'écurie a bien été supprimé");
+    }
+
 
     public function inscription(Request $request) {
         return View::make("dashboard.inscription");

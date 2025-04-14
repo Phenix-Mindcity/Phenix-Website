@@ -9,7 +9,7 @@
 
   <hr class="h-px mt-0 bg-transparent bg-gradient-to-r from-transparent via-black/40 to-transparent" />
 
-  <div class="items-center block w-auto max-h-screen overflow-auto h-sidenav grow basis-full">
+  <div class="items-center block w-auto max-h-screen overflow-auto grow basis-full h-screen">
     <ul class="flex flex-col pl-0 mb-0">
       <li class="mt-0.5 w-full">
         <a href="{{ route('dashboard.home') }}" class="{{ (request()->is('dashboard')) ? 'rounded-lg bg-white font-semibold text-slate-700 shadow-soft-xl' : '' }} px-4 py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap transition-colors">
@@ -71,6 +71,14 @@
                         <span class="{{ (request()->is('result')) ? 'text-white' : '' }} material-symbols-outlined">sports_score</span>
                     </div>
                     <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Résultats</span>
+                </a>
+            </li>
+            <li class="mt-0.5 w-full">
+                <a href="{{ route('dashboard.ecurie') }}" class="{{ (request()->is('ecurie')) ? 'rounded-lg bg-white font-semibold text-slate-700 shadow-soft-xl' : '' }} px-4 py-2.7 text-sm ease-nav-brand my-0 mx-4 flex items-center whitespace-nowrap transition-colors">
+                    <div class="{{ (request()->is('ecurie')) ? 'bg-gradient-to-tl from-purple-700 to-pink-500' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
+                        <span class="{{ (request()->is('ecurie')) ? 'text-white' : '' }} material-symbols-outlined">groups</span>
+                    </div>
+                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Écurie</span>
                 </a>
             </li>
             <li class="mt-0.5 w-full">
