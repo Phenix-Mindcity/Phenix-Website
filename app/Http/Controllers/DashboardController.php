@@ -245,6 +245,12 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function deleteSponsor(Request $request, $id) {
+        DB::table('sponsors')->delete($id);
+
+        return redirect("/sponsor")->with('success', "Le sponsor a bien été supprimé");
+    }
+
     public function editSponsorPost(Request $request, $id) {
         $file = $request->file('logo');
 

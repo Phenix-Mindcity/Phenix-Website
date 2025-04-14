@@ -110,6 +110,12 @@
                     <a href="/editSponsor/{{ $sponsor->id }}">
                         <button type="button" class="inline-block px-4 py-2 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Modifier</button>
                     </a>
+                    <div class="flex flex-wrap items-center justify-center">
+                        <a href="/deleteSponsor/{{ $sponsor->id }}" class="mt-2">
+                            <button type="button" class="inline-block px-4 py-2 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-red-600 to-rose-400 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Supprimer</button>
+                        </a>
+                    </div>
+
                   </div>
                   @endforeach
               </div>

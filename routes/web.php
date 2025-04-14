@@ -48,6 +48,7 @@ Route::middleware(['auth', checkProfile::class])->group(function () {
         Route::get('/editSponsor/{id}', [DashboardController::class, 'editSponsor']);
         Route::post('/createSponsor', [DashboardController::class, 'createSponsor']);
         Route::post('/editSponsor/{id}', [DashboardController::class, 'editSponsorPost']);
+        Route::get('/deleteSponsor/{id}', [DashboardController::class, 'deleteSponsor']);
 
         Route::middleware([isCA::class])->group(function () {
             Route::get('/membres', [DashboardController::class, 'membres'])->name('dashboard.membres');

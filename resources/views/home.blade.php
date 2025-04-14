@@ -312,7 +312,7 @@
               Phenix
             </div>
             <br>
-            <small>Ce site est destiné à du jeu de rôle sur le serveur GTA RP <a href="https://discord.gg/mindcityrp"><b>MindCity</b></a></small>
+            <small>Ce site est destiné à du jeu de rôle sur le serveur GTA RP <a href="https://discord.gg/mindcityrp"><b>MindCity</b></a><br>Ce site n'est pas développé ou maintenu par Mindcity, géré par ImLacy_ (Discord)</small>
           </div>
           <div class="flex-1">
             <p class="uppercase text-gray-500 md:mb-6">À propos de nous</p>
