@@ -54,7 +54,7 @@
                     <div class="{{ (request()->is('inscription')) ? 'bg-gradient-to-tl from-purple-700 to-pink-500' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                         <span class="{{ (request()->is('inscription')) ? 'text-white' : '' }} material-symbols-outlined">group_add</span>
                     </div>
-                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Inscription</span>
+                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Inscription<br><small>Coming Soon</small></span>
                 </a>
             </li>
             <li class="mt-0.5 w-full">
@@ -70,7 +70,7 @@
                     <div class="{{ (request()->is('result')) ? 'bg-gradient-to-tl from-purple-700 to-pink-500' : '' }} shadow-soft-2xl mr-2 flex h-8 w-8 items-center justify-center rounded-lg bg-white bg-center stroke-0 text-center xl:p-2.5">
                         <span class="{{ (request()->is('result')) ? 'text-white' : '' }} material-symbols-outlined">sports_score</span>
                     </div>
-                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Résultats</span>
+                    <span class="ml-1 duration-300 opacity-100 pointer-events-none ease-soft">Résultats<br><small>Coming Soon</small></span>
                 </a>
             </li>
             <li class="mt-0.5 w-full">

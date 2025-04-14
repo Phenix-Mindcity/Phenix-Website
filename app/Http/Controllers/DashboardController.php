@@ -461,9 +461,12 @@ class DashboardController extends Controller
         return redirect("/ecurie")->with('success', "L'écurie a bien été supprimé");
     }
 
+    public function result(Request $request) {
+        return View::make("errors.404");
+    }
 
     public function inscription(Request $request) {
-        return View::make("dashboard.inscription");
+        return View::make("errors.404");
     }
 
 }
