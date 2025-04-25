@@ -76,11 +76,11 @@
                                   <div class="w-full max-w-full shrink-0 md:w-6/12 md:flex-0 px-3">
                                       <label for="rank" class="mb-2 ml-1 font-bold text-xs text-slate-700">Accès</label>
                                       <select required name="rank" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none">
-                                        <option value="0" {{ $member->rank == 0 ? "required" : "" }}>Aucun accès</option>
-                                        <option value="5" {{ $member->rank == 5 ? "required" : "" }}>Membre de l'association</option>
-                                        <option value="6" {{ $member->rank == 6 ? "required" : "" }}>Organisation de l'évènement</option>
-                                        <option value="10" {{ ($member->rank >= 10 || $member->rank < 15) ? "required" : "" }}>Conseil d'administration</option>
-                                        <option value="15" {{ $member->rank >= 15 ? "required" : "" }}>Présidence</option>
+                                        <option value="0" {{ $member->rank == 0 ? "selected" : "" }}>Aucun accès</option>
+                                        <option value="5" {{ $member->rank == 5 ? "selected" : "" }}>Membre de l'association</option>
+                                        <option value="6" {{ $member->rank == 6 ? "selected" : "" }}>Organisation de l'évènement</option>
+                                        <option value="10" {{ ($member->rank >= 10 && $member->rank < 15) ? "selected" : "" }}>Conseil d'administration</option>
+                                        <option value="15" {{ $member->rank >= 15 ? "selected" : "" }}>Présidence</option>
                                       </select>
                                   </div>
                                   <div class="w-full max-w-full shrink-0 md:w-6/12 md:flex-0 px-3">
