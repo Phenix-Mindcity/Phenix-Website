@@ -80,7 +80,7 @@
                                         <option value="5" {{ $member->rank == 5 ? "required" : "" }}>Membre de l'association</option>
                                         <option value="6" {{ $member->rank == 6 ? "required" : "" }}>Organisation de l'évènement</option>
                                         <option value="10" {{ ($member->rank >= 10 || $member->rank < 15) ? "required" : "" }}>Conseil d'administration</option>
-                                        <option value="15" {{ $member->rank > 15 ? "required" : "" }}>Présidence</option>
+                                        <option value="15" {{ $member->rank >= 15 ? "required" : "" }}>Présidence</option>
                                       </select>
                                   </div>
                                   <div class="w-full max-w-full shrink-0 md:w-6/12 md:flex-0 px-3">
