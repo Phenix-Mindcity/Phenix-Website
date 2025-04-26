@@ -112,7 +112,7 @@
                                         @foreach($members as $member)
                                         <tr>
                                             <td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap">
-                                                <img class="mx-auto w-8 h-8" src="{{ url('storage/profile/' . $member->fullname . '.png') }}" alt="photo">
+                                                <img class="mx-auto w-8 h-8" src="{{ url('storage/profile/' . $member->id . '.png') }}" alt="photo">
                                             </td>
                                             <td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap">
                                                 <span class="text-xs font-semibold leading-tight">{{ $member->fullname }}</span>

@@ -88,7 +88,7 @@
                                       <input required value="{{ $member->role }}" type="input" name="role" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"></input>
                                   </div>
                                   <div class="w-full max-w-full shrink-0 md:w-full md:flex-0 px-3">
-                                      <label for="photo" class="mb-2 ml-1 font-bold text-xs text-slate-700">Logo (laissez vide pour ne pas modifier)</label>
+                                      <label for="photo" class="mb-2 ml-1 font-bold text-xs text-slate-700">Photo (laissez vide pour ne pas modifier)</label>
                                       <input name="photo" dropzone type="file" placeholder="Envoyer le fichier..." class="dark:bg-slate-900 dark:text-white dark:bg-gray-950 mb-4 focus:shadow-primary-outline dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">                            </div>
                                   </div>
                                     <div class="flex flex-wrap -mx-3 mt-4 w-full mb-4">

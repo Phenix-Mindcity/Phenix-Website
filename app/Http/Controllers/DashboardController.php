@@ -199,7 +199,7 @@ class DashboardController extends Controller
                 return redirect()->back()->withErrors($validator);
             }
 
-            Storage::disk('public')->put('/profile/' . $request->input('name') . ".png", file_get_contents($file));
+            Storage::disk('public')->put('/profile/' . $id . ".png", file_get_contents($file));
 
             DB::table("users")
                 ->where("id", $id)
