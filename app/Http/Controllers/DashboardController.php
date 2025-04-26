@@ -234,6 +234,8 @@ class DashboardController extends Controller
                 ->update(['rank' => $request->input('rank'), 'role' => $request->input('role')]);
         }
 
+        file_get_contents("http://localhost:5000/updateMember?discord=" . Auth::user()->id);
+
         return redirect("/membres")->with('success', "Le membre a bien été modifié");
     }
 
