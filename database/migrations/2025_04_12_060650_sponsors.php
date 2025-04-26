@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('fileName');
+            $table->boolean('partner');
         });
     }
 

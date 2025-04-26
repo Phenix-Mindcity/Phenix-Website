@@ -258,6 +258,7 @@ class DashboardController extends Controller
                 'logo' => 'clamav|max:10240|required|image',
                 'name' => 'required',
                 'description' => 'required',
+                "partner" => 'required',
             );
 
             $messages = [
@@ -267,6 +268,7 @@ class DashboardController extends Controller
                 'logo.image' => 'Le fichier doit être une image.',
                 'name.required' => "Vous devez donner le nom",
                 'description.required' => "Vous devez donner une description",
+                'partner.required' => "Vous devez donner indiquer si il est partenaire",
             ];
 
             $validator = Validator::make($request->all(), $rules, $messages);
@@ -279,16 +281,18 @@ class DashboardController extends Controller
 
             DB::table("sponsors")
                 ->where("id", $id)
-                ->update(['name' => $request->input('name'), 'description' => $request->input('description'), 'fileName'=> $request->input('name') . "." . $file->getClientOriginalExtension()]);
+                ->update(['name' => $request->input('name'), 'description' => $request->input('description'), 'partner' => $request->input('partner'), 'fileName'=> $request->input('name') . "." . $file->getClientOriginalExtension()]);
         } else {
             $rules = array(
                 'name' => 'required',
                 'description' => 'required',
+                "partner" => 'required',
             );
 
             $messages = [
                 'name.required' => "Vous devez donner le nom",
                 'description.required' => "Vous devez donner une description",
+                'partner.required' => "Vous devez donner indiquer si il est partenaire",
             ];
 
             $validator = Validator::make($request->all(), $rules, $messages);
@@ -299,7 +303,7 @@ class DashboardController extends Controller
 
             DB::table("sponsors")
                 ->where("id", $id)
-                ->update(['name' => $request->input('name'), 'description' => $request->input('description')]);
+                ->update(['name' => $request->input('name'), 'description' => $request->input('description'), 'partner' => $request->input('partner')]);
         }
 
         return redirect("/sponsor")->with('success', "Le sponsor a bien été modifié");
@@ -310,6 +314,7 @@ class DashboardController extends Controller
             'logo' => 'clamav|max:10240|required|image',
             'name' => 'required',
             'description' => 'required',
+            'partner' => 'required',
         );
 
         $messages = [
@@ -319,6 +324,7 @@ class DashboardController extends Controller
             'logo.image' => 'Le fichier doit être une image.',
             'name.required' => "Vous devez donner le nom",
             'description.required' => "Vous devez donner une description",
+            'partner.required' => "Vous devez donner indiquer si il est partenaire",
         ];
 
         $file = $request->file('logo');
@@ -337,6 +343,7 @@ class DashboardController extends Controller
                 'name' => $request->input('name'),
                 'description' => $request->input('description'),
                 'fileName' => $request->input('name') . "." . $file->getClientOriginalExtension(),
+                'partner' => $request->input('partner')
             ]);
 
         return redirect()->back()->with('success', "Le sponsor a bien été ajouté");

@@ -80,15 +80,22 @@
                                       <label for="description" class="mb-2 ml-1 font-bold text-xs text-slate-700">Description</label>
                                       <input required type="input" name="description" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none"></input>
                                   </div>
-                                  <div class="w-full max-w-full shrink-0 md:w-full md:flex-0 px-3">
+                                  <div class="w-full max-w-full shrink-0 md:w-6/12 md:flex-0 px-3">
                                       <label for="logo" class="mb-2 ml-1 font-bold text-xs text-slate-700">Logo</label>
-                                      <input name="logo" dropzone type="file" placeholder="Envoyer le fichier..." class="dark:bg-slate-900 dark:text-white dark:bg-gray-950 mb-4 focus:shadow-primary-outline dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">                            </div>
+                                      <input required name="logo" dropzone type="file" placeholder="Envoyer le fichier..." class="dark:bg-slate-900 dark:text-white dark:bg-gray-950 mb-4 focus:shadow-primary-outline dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">
                                   </div>
-                                    <div class="flex flex-wrap -mx-3 mt-4 w-full mb-4">
-                                        <div class="mt-4 ml-4 w-full lg:flex-none flex flex-col items-center">
-                                            <button type="submit" class="inline-block px-8 py-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Ajouter le sponsor</button>
-                                        </div>
-                                    </div>
+                                  <div class="w-full max-w-full shrink-0 md:w-6/12 md:flex-0 px-3">
+                                      <label for="partner" class="mb-2 ml-1 font-bold text-xs text-slate-700">Partenaire</label>
+                                      <select required name="partner" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none">
+                                        <option value="1">Oui</option>
+                                        <option value="0" selected>Non</option>
+                                      </select>
+                                  </div>
+                                  <div class="flex flex-wrap -mx-3 mt-4 w-full mb-4">
+                                       <div class="mt-4 ml-4 w-full lg:flex-none flex flex-col items-center">
+                                           <button type="submit" class="inline-block px-8 py-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Ajouter le sponsor</button>
+                                       </div>
+                                  </div>
                                 </div>
                             </form>
                         </div>
@@ -106,7 +113,7 @@
                       <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                           {{ $sponsor->name }}
                       </h3>
-                    <p>{{ $sponsor->description }}</p>
+                    <p>{{ $sponsor->description }}<br>{{ $sponsor->partner == 1 ? "Partenaire" : "" }}</p>
                     <a href="/editSponsor/{{ $sponsor->id }}">
                         <button type="button" class="inline-block px-4 py-2 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Modifier</button>
                     </a>

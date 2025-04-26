@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index() {
         $members = DB::table('users')->orderByDesc('rank')->where("rank", ">=", 5)->get();
-        $sponsors = DB::table('sponsors')->get();
+        $sponsors = DB::table('sponsors')->where("partner", 1)->get();
         $courses = DB::table('courses')->get();
 
         return View::make("home")->with([
