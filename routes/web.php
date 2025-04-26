@@ -36,11 +36,17 @@ Route::middleware(['auth', checkProfile::class])->group(function () {
     Route::get('/participants', [DashboardController::class, 'participants'])->name('dashboard.participants');
 
     Route::get('/join/{token}', [DashboardController::class, 'join']);
+    Route::get('/inscrire/{token}', [DashboardController::class, 'inscrire']);
 
     Route::post('/putBet', [DashboardController::class, 'putBet']);
 
     Route::middleware([isMembre::class])->group(function () {
         Route::get('/inscription', [DashboardController::class, 'inscription'])->name('dashboard.inscription');
+        Route::get('/editPilote/{id}', [DashboardController::class, 'editPilote']);
+        Route::post('/addPilote', [DashboardController::class, 'addPilote']);
+        Route::post('/editPilote/{id}', [DashboardController::class, 'editPilotePost']);
+        Route::get('/deletePilote/{id}', [DashboardController::class, 'deletePilote']);
+
         Route::get('/view_pari', [DashboardController::class, 'view_pari'])->name('dashboard.view_pari');
 
         Route::get('/sponsor', [DashboardController::class, 'sponsor'])->name('dashboard.sponsor');
