@@ -96,22 +96,22 @@
             </p>
           </div>
           <div class="w-full sm:w-1/2 p-6">
-            <img src="{{ url('storage/img/cars/omnis.jpg') }}">
+            <img src="{{ url('storage/img/courses/rally.webp') }}">
           </div>
         </div>
         <div class="flex flex-wrap flex-col-reverse sm:flex-row">
           <div class="w-full sm:w-1/2 p-6 mt-6">
-            <img src="{{ url('storage/img/cars/bati.jpg') }}">
+            <img src="{{ url('storage/img/courses/ringofhell.webp') }}">
           </div>
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
               <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Moto GP
+                Ring Of Hell
               </h3>
               <p class="text-gray-600 mb-8">
-                Un bicylindre survitaminé, 195 chevaux et 11 000 t/min, avec seulement 164 KG et une gueule à tomber par terre
+                Un cercle sans fin, tournez sans jamais revenir en arrière, et priez que le sors vous soit favorable
                 <br><br>
-                Prenez la route sur cette beauté, profiter de cette puissance de ce son, et n'oubliez pas, on ne freine pas dans les virages.
+                Le dernier moteur qui tourne, sera couronné gagnant.
 
                 @if ($courses->where("name", "Ring Of Hell")->first()->date != null)
                 <br><br>
@@ -137,12 +137,12 @@
             </p>
           </div>
           <div class="w-full sm:w-1/2 p-6">
-            <img src="{{ url('storage/img/cars/sultan.webp') }}">
+            <img src="{{ url('storage/img/courses/streetrace.webp') }}">
           </div>
         </div>
         <div class="flex flex-wrap flex-col-reverse sm:flex-row">
           <div class="w-full sm:w-1/2 p-6 mt-6">
-            <img src="{{ url('storage/img/cars/f1.webp') }}">
+            <img src="{{ url('storage/img/courses/f1.webp') }}">
           </div>
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
@@ -167,12 +167,12 @@
         <div class="flex flex-wrap">
           <div class="w-5/6 sm:w-1/2 p-6">
             <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-              Drift
+              Truck Battle
             </h3>
             <p class="text-gray-600 mb-8">
-              6 cylindres en ligne, 387 chevaux, une merveille japonaise, partageant le même logo que la Prius...
+              J'aurais aimée vous teaser, vous dire à quel point ce sera incroyable, mais pourquoi tout spoiler ?
               <br><br>
-              La gomme qui s'arrache sur la piste, les figures qui s'enchaine, montrez-nous ce que c'est de savoir drifter.
+              Je dirais seulement 2 mots : Aucune règle.
 
               @if ($courses->where("name", "Truck")->first()->date != null)
               <br><br>
@@ -181,7 +181,7 @@
             </p>
           </div>
           <div class="w-full sm:w-1/2 p-6">
-            <img src="{{ url('storage/img/cars/jester.webp') }}">
+            <img src="{{ url('storage/img/courses/truck.webp') }}">
           </div>
         </div>
       </div>

@@ -92,7 +92,7 @@ class DashboardController extends Controller
     public function score(Request $request) {
         $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
         $users = DB::table('users')->get();
-        $scores = DB::table('score')->get();
+        $scores = DB::table('score')->orderBy('place', 'asc')->get();
         $finalScore = array();
 
         foreach($scores as $score) {
