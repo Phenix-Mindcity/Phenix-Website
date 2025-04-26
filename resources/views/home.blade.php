@@ -88,6 +88,11 @@
               <br>
               <br>
               Retrouvez l'âme du Groupe B, dans une voiture mythique, rappelant l'âge d'or du Rallye mondiale.
+
+              @if ($courses->where("name", "Rallye")->first()->date != null)
+              <br><br>
+              <b>Date : {{ \Carbon\Carbon::parse($courses->where("name", "Rallye")->first()->date)->translatedFormat('d F Y à H:i'); }}</b>
+              @endif
             </p>
           </div>
           <div class="w-full sm:w-1/2 p-6">
@@ -107,6 +112,11 @@
                 Un bicylindre survitaminé, 195 chevaux et 11 000 t/min, avec seulement 164 KG et une gueule à tomber par terre
                 <br><br>
                 Prenez la route sur cette beauté, profiter de cette puissance de ce son, et n'oubliez pas, on ne freine pas dans les virages.
+
+                @if ($courses->where("name", "Ring Of Hell")->first()->date != null)
+                <br><br>
+                <b>Date : {{ \Carbon\Carbon::parse($courses->where("name", "Ring Of Hell")->first()->date)->translatedFormat('d F Y à H:i'); }}</b>
+                @endif
               </p>
             </div>
           </div>
@@ -120,6 +130,10 @@
               Non, vous ne rêvez pas, on a réussi à ressortir ce véhicule mythique, produit à 400 exemplaires, une légende du japon, une déesse de la route
               <br><br>
               Le moteur qui ronronne, les pneus qui agrippe le bitume, la ville est notre terrain de jeu.
+              @if ($courses->where("name", "Street Race")->first()->date != null)
+              <br><br>
+              <b>Date : {{ \Carbon\Carbon::parse($courses->where("name", "Street Race")->first()->date)->translatedFormat('d F Y à H:i'); }}</b>
+              @endif
             </p>
           </div>
           <div class="w-full sm:w-1/2 p-6">
@@ -141,6 +155,11 @@
                 Posé.e dans le cockpit, les yeux rivées sur la piste, le V12 qui crie de toutes ses forces, soyez prêt.e
                 <br><br>
                 <small>Avec un peu de chance, vous croiserez un Espace sur la piste</small>
+
+                @if ($courses->where("name", "F1")->first()->date != null)
+                <br><br>
+                <b>Date : {{ \Carbon\Carbon::parse($courses->where("name", "F1")->first()->date)->translatedFormat('d F Y à H:i'); }}</b>
+                @endif
               </p>
             </div>
           </div>
@@ -154,6 +173,11 @@
               6 cylindres en ligne, 387 chevaux, une merveille japonaise, partageant le même logo que la Prius...
               <br><br>
               La gomme qui s'arrache sur la piste, les figures qui s'enchaine, montrez-nous ce que c'est de savoir drifter.
+
+              @if ($courses->where("name", "Truck")->first()->date != null)
+              <br><br>
+              <b>Date : {{ \Carbon\Carbon::parse($courses->where("name", "Truck")->first()->date)->translatedFormat('d F Y à H:i'); }}</b>
+              @endif
             </p>
           </div>
           <div class="w-full sm:w-1/2 p-6">

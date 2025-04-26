@@ -12,10 +12,12 @@ class HomeController extends Controller
     public function index() {
         $members = DB::table('users')->orderByDesc('rank')->where("rank", ">=", 5)->get();
         $sponsors = DB::table('sponsors')->get();
+        $courses = DB::table('courses')->get();
 
         return View::make("home")->with([
             "members"=>$members,
-            "sponsors"=>$sponsors
+            "sponsors"=>$sponsors,
+            "courses"=>$courses
         ]);
     }
 }
