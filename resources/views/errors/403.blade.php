@@ -21,7 +21,7 @@
 
 <center>
     <a href="/dashboard">
-        <img src="/storage/img/logo.png" style="width: 35%; height: auto" alt="Logo"><br>
+        <img src="/storage/img/LogoBig.png" style="width: 35%; height: auto" alt="Logo"><br>
     </a>
     <h1 class="kode-mono">403 - Accès refusé</h1>
     <a href="{{ url()->previous() }}">
