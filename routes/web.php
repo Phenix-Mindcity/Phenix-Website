@@ -42,7 +42,6 @@ Route::middleware(['auth', checkProfile::class])->group(function () {
     Route::middleware([isMembre::class])->group(function () {
         Route::get('/inscription', [DashboardController::class, 'inscription'])->name('dashboard.inscription');
         Route::get('/view_pari', [DashboardController::class, 'view_pari'])->name('dashboard.view_pari');
-        Route::get('/result', [DashboardController::class, 'result'])->name('dashboard.result');
 
         Route::get('/sponsor', [DashboardController::class, 'sponsor'])->name('dashboard.sponsor');
         Route::get('/editSponsor/{id}', [DashboardController::class, 'editSponsor']);
@@ -61,6 +60,9 @@ Route::middleware(['auth', checkProfile::class])->group(function () {
             Route::get('/editMember/{id}', [DashboardController::class, 'editMember']);
             Route::post('/addMember', [DashboardController::class, 'addMember']);
             Route::post('/editMember/{id}', [DashboardController::class, 'editMemberPost']);
+
+            Route::get('/result', [DashboardController::class, 'result'])->name('dashboard.result');
+            Route::post('/setResult', [DashboardController::class, 'setResult']);
 
             Route::get('/validateBet/{BetID}', [DashboardController::class, 'validateBet']);
         });

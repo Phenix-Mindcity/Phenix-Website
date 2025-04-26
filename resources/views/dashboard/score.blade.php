@@ -64,7 +64,7 @@
           <div class="flex flex-wrap items-center justify-center">
               @foreach ($globalScores as $name=>$score)
               <div class="ml-4 mr-4 text-center text-gray-500">
-                  <img class="mx-auto mb-4 w-24 h-24 rounded-full" src="{{ url('storage/img/ecurie/' . $name . '.png') }}">
+                  <img class="mx-auto mb-4 w-24 h-24" src="{{ url('storage/ecuries/' . $name . '.png') }}">
                   <h2 class="mb-1 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                       {{ $name }}
                   </h2>

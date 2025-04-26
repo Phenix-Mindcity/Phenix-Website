@@ -467,7 +467,56 @@ class DashboardController extends Controller
     }
 
     public function result(Request $request) {
-        return View::make("errors.404");
+        $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
+        $users = DB::table('users')->get();
+        $pilotes = DB::table('pilotes')->where("course", $currentCourse->name)->get();
+
+        return View::make("dashboard.result")->with([
+            "users"=>$users,
+            "pilotes"=>$pilotes
+        ]);
+    }
+
+    public function setResult(Request $request) {
+        $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
+        $allPilotes = DB::table("pilotes")->where("course", $currentCourse->name)->get();
+
+        foreach($request->post() as $id=>$place) {
+            if ($id == "_token") continue;
+            $pilote = DB::table("pilotes")->where("discord", $id)->where("course", $currentCourse->name)->get()->first();
+            $pilote->ecurie = str_replace("\r\n",'', $pilote->ecurie);
+            $score = $place <= 5 ? (count($allPilotes)*2) - (abs($place - 1)*2) : count($allPilotes) - abs($place - 5);
+            if ($score < 0) $score = 0;
+
+
+            DB::table("score")
+                ->insert([
+                    'discord' => $id,
+                    'course' => $currentCourse->name,
+                    'place' => $place,
+                    'ecurie' => $pilote->ecurie,
+                    'score' => $score,
+                ]);
+
+
+
+
+            if ($place == 1) {
+                DB::table("bet")
+                    ->where("course", $currentCourse->name)
+                    ->where("ecurie", $pilote->ecurie)
+                    ->where("status", 1)
+                    ->update(['status' => 3]);
+
+                DB::table("bet")
+                    ->where("course", $currentCourse->name)
+                    ->where("ecurie", "!=", $pilote->ecurie)
+                    ->where("status", 1)
+                    ->update(['status' => 2]);
+            }
+        }
+
+        return redirect("/result")->with('success', "Les résultats ont bien été envoyés");
     }
 
     public function inscription(Request $request) {
