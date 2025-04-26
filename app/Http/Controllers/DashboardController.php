@@ -168,6 +168,8 @@ class DashboardController extends Controller
             ->where("id", Auth::user()->id)
             ->update(['rank' => 5]);
 
+        file_get_contents("http://localhost:5000/updateMember?discord=" . Auth::user()->id);
+
         return redirect()->back()->with('success', "Bienvenue au sein de l'association !");
     }
 
@@ -233,6 +235,21 @@ class DashboardController extends Controller
         }
 
         return redirect("/membres")->with('success', "Le membre a bien été modifié");
+    }
+
+    public function deleteMember(Request $request, $id) {
+        $user = DB::table("users")->where("id", $id)->get()->first();
+        if ($user == null) return redirect()->back()->withErrors("Impossible de trouver le membre");
+        if ($id == Auth::user()->id) return redirect()->back()->withErrors("Tu ne peux t'auto-supprimer..................");
+        if ($user->rank > Auth::user()->rank) return redirect()->back()->withErrors("Tu ne peux pas virer plus haut que toi.");
+
+        DB::table("users")
+            ->where("id", $id)
+            ->update(['rank' => 0, 'role' => ""]);
+
+        file_get_contents("http://localhost:5000/updateMember?discord=" . Auth::user()->id);
+
+        return redirect("/membres")->with('success', "Le membre a bien été supprimé");
     }
 
     public function sponsor(Request $request) {
@@ -577,6 +594,8 @@ class DashboardController extends Controller
                 'ecurie' => $ecurie,
             ]);
 
+        file_get_contents("http://localhost:5000/updatePilote?discord=" . Auth::user()->id);
+
         return redirect()->back()->with('success', "Tu es bien inscrit.e, félicitation !");
     }
 
@@ -615,6 +634,8 @@ class DashboardController extends Controller
 
     public function deletePilote(Request $request, $id) {
         DB::table('pilotes')->delete($id);
+
+        file_get_contents("http://localhost:5000/updatePilote?discord=" . Auth::user()->id);
 
         return redirect("/inscription")->with('success', "L'inscription a bien été supprimé");
     }

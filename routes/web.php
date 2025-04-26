@@ -66,6 +66,7 @@ Route::middleware(['auth', checkProfile::class])->group(function () {
             Route::get('/editMember/{id}', [DashboardController::class, 'editMember']);
             Route::post('/addMember', [DashboardController::class, 'addMember']);
             Route::post('/editMember/{id}', [DashboardController::class, 'editMemberPost']);
+            Route::get('/deleteMember/{id}', [DashboardController::class, 'deleteMember']);
 
             Route::get('/result', [DashboardController::class, 'result'])->name('dashboard.result');
             Route::post('/setResult', [DashboardController::class, 'setResult']);
