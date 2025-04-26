@@ -63,7 +63,7 @@ class DashboardController extends Controller
 
     public function pari(Request $request) {
         $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
-        $bets = DB::table('bet')->where("discord", Auth::user()->id)->where("course", $currentCourse->name)->get();
+        $bets = DB::table('bet')->where("discord", Auth::user()->id)->get();
         $ecuries = DB::table('ecurie')->get();
 
         return View::make("dashboard.pari")->with([
@@ -73,6 +73,11 @@ class DashboardController extends Controller
     }
 
     public function putBet(Request $request) {
+        $bet = DB::table('bet')->where("discord", Auth::user()->id)->where("course", $request->input('course'))->get();
+        $currentCourse = DB::table("courses")->where("name", $request->input('course'))->get()->first();
+        if ($bet->first() != null) return redirect()->back()->withErrors("Tu as déjà déposé.e un pari !");
+        if (time() >= strtotime($currentCourse->date)) return redirect()->back()->withErrors("Il est trop tard pour parier !");
+
         DB::table("bet")
             ->insert([
                 'discord' => Auth::user()->id,
