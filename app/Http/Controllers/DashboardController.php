@@ -129,11 +129,15 @@ class DashboardController extends Controller
             else $finalScore[$score->ecurie] += $score->score;
         }
 
+        ksort($finalScore);
+        array_reverse($finalScore);
+
         return View::make("dashboard.score")->with([
             "currentCourse"=>$currentCourse,
             "users"=>$users,
             "globalScores"=>$finalScore,
-            "scores"=>$scores
+            "scores"=>$scores,
+            "ecuries"=>$ecuries
         ]);
     }
 

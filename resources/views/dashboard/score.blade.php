@@ -62,11 +62,11 @@
               <h2 class="mb-4 text-2xl tracking-tight font-bold text-gray-900 dark:text-white text-center">Tableau général</h2>
           </div>
           <div class="flex flex-wrap items-center justify-center">
-              @foreach ($globalScores as $name=>$score)
+              @foreach ($globalScores as $id=>$score)
               <div class="ml-4 mr-4 text-center text-gray-500">
-                  <img class="mx-auto mb-4 w-24 h-24" src="{{ url('storage/ecuries/' . $name . '.png') }}">
+                  <img class="mx-auto mb-4 w-24 h-24" src="{{ url('storage/ecuries/' . $id . '.png') }}">
                   <h2 class="mb-1 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                      {{ $name }}
+                      {{ $ecuries->where("id", $id)->first()->name }}
                   </h2>
                   <p>{{ $score }} points</p>
               </div>
