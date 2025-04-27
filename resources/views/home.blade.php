@@ -340,6 +340,9 @@
               <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                 <div class="text-gray-800">Twitter : @Phenix</div>
               </li>
+              <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                <div class="text-gray-800">Github : <a href="https://github.com/Phenix-Mindcity/Phenix-Website">Phenix-Mindcity</a></div>
+              </li>
             </ul>
           </div>
           <div class="flex-1">
