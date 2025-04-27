@@ -19,10 +19,10 @@ return new class extends Migration
         });
 
         DB::table("courses")->insert(["name" => "Rallye", "date" => NULL, "current" => 1]);
-        DB::table("courses")->insert(["name" => "Moto", "date" => NULL, "current" => 0]);
+        DB::table("courses")->insert(["name" => "Ring Of Hell", "date" => NULL, "current" => 0]);
         DB::table("courses")->insert(["name" => "Street Race", "date" => NULL, "current" => 0]);
         DB::table("courses")->insert(["name" => "F1", "date" => NULL, "current" => 0]);
-        DB::table("courses")->insert(["name" => "Drift Contest", "date" => NULL, "current" => 0]);
+        DB::table("courses")->insert(["name" => "Truck", "date" => NULL, "current" => 0]);
     }
 
     /**
