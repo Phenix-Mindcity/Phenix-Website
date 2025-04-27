@@ -32,7 +32,7 @@ class DashboardController extends Controller
 
     public function validateBet(Request $request, $BetID) {
         $bets = DB::table('bet')->where("id", $BetID)->get();
-        if ($bets->first()->status != 0 && $bets->first()->status != 4) return redirect()->back()->withErrors("Tu ne peux pas modifier le statut de ce pari");
+        if ($bets->first()->status != 0 && $bets->first()->status != 3) return redirect()->back()->withErrors("Tu ne peux pas modifier le statut de ce pari");
 
         DB::table("bet")
             ->where("id", $BetID)
