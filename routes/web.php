@@ -7,6 +7,7 @@ use App\Http\Controllers\EcurieController;
 use App\Http\Controllers\InscriptionController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\SponsorController;
+use App\Http\Controllers\ScoreController;
 
 use App\Http\Middleware\isMembre;
 use App\Http\Middleware\isOrga;
@@ -37,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', checkProfile::class])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'home'])->name('dashboard.home');
     Route::get('/pari', [BetController::class, 'pari'])->name('dashboard.pari');
-    Route::get('/score', [DashboardController::class, 'score'])->name('dashboard.score');
+    Route::get('/score', [ScoreController::class, 'score'])->name('dashboard.score');
     Route::get('/participants', [DashboardController::class, 'participants'])->name('dashboard.participants');
 
     Route::get('/join/{token}', [MemberController::class, 'join']);
@@ -78,8 +79,8 @@ Route::middleware(['auth', checkProfile::class])->group(function () {
                 Route::post('/editMember/{id}', [MemberController::class, 'editMemberPost']);
                 Route::get('/deleteMember/{id}', [MemberController::class, 'deleteMember']);
 
-                Route::get('/result', [DashboardController::class, 'result'])->name('dashboard.result');
-                Route::post('/setResult', [DashboardController::class, 'setResult']);
+                Route::get('/result', [ScoreController::class, 'result'])->name('dashboard.result');
+                Route::post('/setResult', [ScoreController::class, 'setResult']);
             });
         });
     });
