@@ -17,6 +17,14 @@ use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
+    public function home(Request $request) {
+        $members = DB::table('users')->orderByDesc('rank')->where("rank", ">=", 5)->get();
+
+        return View::make("dashboard.index")->with([
+            "members"=>$members
+        ]);
+    }
+
     public function profile(Request $request) {
         session(['url.intended' => url()->previous()]);
         return View::make("dashboard.profile");
@@ -29,17 +37,13 @@ class DashboardController extends Controller
 
         return redirect(session()->get('url.intended'));
     }
-
-    public function validateBet(Request $request, $BetID) {
-        $bets = DB::table('bet')->where("id", $BetID)->get();
-        if ($bets->first()->status != 0 && $bets->first()->status != 3) return redirect()->back()->withErrors("Tu ne peux pas modifier le statut de ce pari");
-
-        DB::table("bet")
-            ->where("id", $BetID)
-            ->update(['status' => $bets->first()->status+1]);
-
-        return redirect()->back()->with('success', $bets->first()->status == 0 ? 'Le pari a été validé' : 'Le pari a été payé');
-    }
+    /*
+    ██████   █████  ██████  ██
+    ██   ██ ██   ██ ██   ██ ██
+    ██████  ███████ ██████  ██
+    ██      ██   ██ ██   ██ ██
+    ██      ██   ██ ██   ██ ██
+    */
 
     public function view_pari(Request $request) {
         $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
@@ -54,12 +58,15 @@ class DashboardController extends Controller
         ]);
     }
 
-    public function home(Request $request) {
-        $members = DB::table('users')->orderByDesc('rank')->where("rank", ">=", 5)->get();
+    public function validateBet(Request $request, $BetID) {
+        $bets = DB::table('bet')->where("id", $BetID)->get();
+        if ($bets->first()->status != 0 && $bets->first()->status != 3) return redirect()->back()->withErrors("Tu ne peux pas modifier le statut de ce pari");
 
-        return View::make("dashboard.index")->with([
-            "members"=>$members
-        ]);
+        DB::table("bet")
+            ->where("id", $BetID)
+            ->update(['status' => $bets->first()->status+1]);
+
+        return redirect()->back()->with('success', $bets->first()->status == 0 ? 'Le pari a été validé' : 'Le pari a été payé');
     }
 
     public function pari(Request $request) {
@@ -143,6 +150,14 @@ class DashboardController extends Controller
         ]);
     }
 
+    /*
+    ███    ███ ███████ ███    ███ ██████  ██████  ███████
+    ████  ████ ██      ████  ████ ██   ██ ██   ██ ██
+    ██ ████ ██ █████   ██ ████ ██ ██████  ██████  █████
+    ██  ██  ██ ██      ██  ██  ██ ██   ██ ██   ██ ██
+    ██      ██ ███████ ██      ██ ██████  ██   ██ ███████
+    */
+
     public function membres(Request $request) {
         $members = DB::table('users')->where("rank", ">=", 5)->get();
 
@@ -204,7 +219,6 @@ class DashboardController extends Controller
             "member"=> $member->first()
         ]);
     }
-
 
     public function editMemberPost(Request $request, $id) {
         $file = $request->file('photo');
@@ -278,12 +292,67 @@ class DashboardController extends Controller
         return redirect("/membres")->with('success', "Le membre a bien été supprimé");
     }
 
+    /*
+    ███████ ██████   ██████  ███    ██ ███████  ██████  ██████
+    ██      ██   ██ ██    ██ ████   ██ ██      ██    ██ ██   ██
+    ███████ ██████  ██    ██ ██ ██  ██ ███████ ██    ██ ██████
+         ██ ██      ██    ██ ██  ██ ██      ██ ██    ██ ██   ██
+    ███████ ██       ██████  ██   ████ ███████  ██████  ██   ██
+    */
+
     public function sponsor(Request $request) {
         $sponsors = DB::table('sponsors')->get();
 
         return View::make("dashboard.sponsor")->with([
             "sponsors"=>$sponsors
         ]);
+    }
+
+    public function createSponsor(Request $request) {
+        $description = $request->input('description') == null ? "" : $request->input('description');
+
+        $rules = array(
+            'logo' => 'clamav|max:10240|required|image',
+            'name' => 'required',
+            'partner' => 'required',
+        );
+
+        $messages = [
+            'logo.clamav' => 'Une erreur inconnue est survenue.',
+            'logo.required' => 'Vous devez donner un logo valide.',
+            'logo.max' => 'Le fichier est trop gros.',
+            'logo.image' => 'Le fichier doit être une image.',
+            'name.required' => "Vous devez donner le nom",
+            'partner.required' => "Vous devez donner indiquer si il est partenaire",
+        ];
+
+        $file = $request->file('logo');
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $sponsors = DB::table('sponsors')->where("name", $request->input('name'))->get()->first();
+        if ($sponsors != null) return redirect()->back()->withErrors("Ce nom existe déjà !");
+
+        $lastSponsor = DB::table('sponsors')->get()->last();
+        $id = $lastSponsor != null ? $lastSponsor->id+1 : 1;
+
+
+        Storage::disk('public')->put('/sponsors/' . $id . "." . $file->getClientOriginalExtension(), file_get_contents($file));
+
+        DB::table("sponsors")
+            ->insert([
+                'id' => $id,
+                'name' => $request->input('name'),
+                'description' => $description,
+                'fileName' => $id . "." . $file->getClientOriginalExtension(),
+                'partner' => $request->input('partner')
+            ]);
+
+        return redirect()->back()->with('success', "Le sponsor a bien été ajouté");
     }
 
     public function editSponsor(Request $request, $id) {
@@ -361,53 +430,6 @@ class DashboardController extends Controller
         return redirect("/sponsor")->with('success', "Le sponsor a bien été modifié");
     }
 
-    public function createSponsor(Request $request) {
-        $description = $request->input('description') == null ? "" : $request->input('description');
-
-        $rules = array(
-            'logo' => 'clamav|max:10240|required|image',
-            'name' => 'required',
-            'partner' => 'required',
-        );
-
-        $messages = [
-            'logo.clamav' => 'Une erreur inconnue est survenue.',
-            'logo.required' => 'Vous devez donner un logo valide.',
-            'logo.max' => 'Le fichier est trop gros.',
-            'logo.image' => 'Le fichier doit être une image.',
-            'name.required' => "Vous devez donner le nom",
-            'partner.required' => "Vous devez donner indiquer si il est partenaire",
-        ];
-
-        $file = $request->file('logo');
-
-        $validator = Validator::make($request->all(), $rules, $messages);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator);
-        }
-
-        $sponsors = DB::table('sponsors')->where("name", $request->input('name'))->get()->first();
-        if ($sponsors != null) return redirect()->back()->withErrors("Ce nom existe déjà !");
-
-        $lastSponsor = DB::table('sponsors')->get()->last();
-        $id = $lastSponsor != null ? $lastSponsor->id+1 : 1;
-
-
-        Storage::disk('public')->put('/sponsors/' . $id . "." . $file->getClientOriginalExtension(), file_get_contents($file));
-
-        DB::table("sponsors")
-            ->insert([
-                'id' => $id,
-                'name' => $request->input('name'),
-                'description' => $description,
-                'fileName' => $id . "." . $file->getClientOriginalExtension(),
-                'partner' => $request->input('partner')
-            ]);
-
-        return redirect()->back()->with('success', "Le sponsor a bien été ajouté");
-    }
-
     public function deleteSponsor(Request $request, $id) {
         $actualSponsor = DB::table('sponsors')->where("id", $id)->get()->first();
         DB::table('sponsors')->delete($id);
@@ -419,6 +441,14 @@ class DashboardController extends Controller
         return redirect("/sponsor")->with('success', "Le sponsor a bien été supprimé");
     }
 
+    /*
+    ███████  ██████ ██    ██ ██████  ██ ███████
+    ██      ██      ██    ██ ██   ██ ██ ██
+    █████   ██      ██    ██ ██████  ██ █████
+    ██      ██      ██    ██ ██   ██ ██ ██
+    ███████  ██████  ██████  ██   ██ ██ ███████
+    */
+
     public function ecurie(Request $request) {
         $ecuries = DB::table('ecurie')->get();
         $sponsors = DB::table('sponsors')->get();
@@ -427,6 +457,49 @@ class DashboardController extends Controller
             "ecuries"=>$ecuries,
             "sponsors"=>$sponsors
         ]);
+    }
+
+    public function createEcurie(Request $request) {
+        $rules = array(
+            'logo' => 'clamav|max:10240|required|image',
+            'name' => 'required',
+            'sponsor' => 'required',
+        );
+
+        $messages = [
+            'logo.clamav' => 'Une erreur inconnue est survenue.',
+            'logo.required' => 'Vous devez donner un logo valide.',
+            'logo.max' => 'Le fichier est trop gros.',
+            'logo.image' => 'Le fichier doit être une image.',
+            'name.required' => "Vous devez donner le nom",
+            'sponsor.required' => "Vous devez donner une description",
+        ];
+
+        $file = $request->file('logo');
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $ecuries = DB::table('ecurie')->where("name", $request->input('name'))->get()->first();
+        if ($ecuries != null) return redirect()->back()->withErrors("Ce nom existe déjà !");
+
+        $lastEcurie = DB::table('ecurie')->get()->last();
+        $id = $lastEcurie != null ? $lastEcurie->id+1 : 1;
+
+        Storage::disk('public')->put('/ecuries/' . $id . "." . $file->getClientOriginalExtension(), file_get_contents($file));
+
+        DB::table("ecurie")
+            ->insert([
+                'id' => $id,
+                'name' => $request->input('name'),
+                'sponsor' => $request->input('sponsor'),
+                'fileName' => $id . "." . $file->getClientOriginalExtension(),
+            ]);
+
+        return redirect()->back()->with('success', "L'écurie a bien été ajouté");
     }
 
     public function editEcurie(Request $request, $id) {
@@ -514,49 +587,6 @@ class DashboardController extends Controller
         return redirect("/ecurie")->with('success', "L'écurie a bien été modifié");
     }
 
-    public function createEcurie(Request $request) {
-        $rules = array(
-            'logo' => 'clamav|max:10240|required|image',
-            'name' => 'required',
-            'sponsor' => 'required',
-        );
-
-        $messages = [
-            'logo.clamav' => 'Une erreur inconnue est survenue.',
-            'logo.required' => 'Vous devez donner un logo valide.',
-            'logo.max' => 'Le fichier est trop gros.',
-            'logo.image' => 'Le fichier doit être une image.',
-            'name.required' => "Vous devez donner le nom",
-            'sponsor.required' => "Vous devez donner une description",
-        ];
-
-        $file = $request->file('logo');
-
-        $validator = Validator::make($request->all(), $rules, $messages);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator);
-        }
-
-        $ecuries = DB::table('ecurie')->where("name", $request->input('name'))->get()->first();
-        if ($ecuries != null) return redirect()->back()->withErrors("Ce nom existe déjà !");
-
-        $lastEcurie = DB::table('ecurie')->get()->last();
-        $id = $lastEcurie != null ? $lastEcurie->id+1 : 1;
-
-        Storage::disk('public')->put('/ecuries/' . $id . "." . $file->getClientOriginalExtension(), file_get_contents($file));
-
-        DB::table("ecurie")
-            ->insert([
-                'id' => $id,
-                'name' => $request->input('name'),
-                'sponsor' => $request->input('sponsor'),
-                'fileName' => $id . "." . $file->getClientOriginalExtension(),
-            ]);
-
-        return redirect()->back()->with('success', "L'écurie a bien été ajouté");
-    }
-
     public function deleteEcurie(Request $request, $id) {
         $actualEcurie = DB::table('ecurie')->where("id", $id)->get()->first();
         DB::table('ecurie')->delete($id);
@@ -567,6 +597,14 @@ class DashboardController extends Controller
 
         return redirect("/ecurie")->with('success', "L'écurie a bien été supprimé");
     }
+
+/*
+    ██████  ███████ ███████ ██    ██ ██      ████████  █████  ████████
+    ██   ██ ██      ██      ██    ██ ██         ██    ██   ██    ██
+    ██████  █████   ███████ ██    ██ ██         ██    ███████    ██
+    ██   ██ ██           ██ ██    ██ ██         ██    ██   ██    ██
+    ██   ██ ███████ ███████  ██████  ███████    ██    ██   ██    ██
+*/
 
     public function result(Request $request) {
         $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
@@ -620,6 +658,14 @@ class DashboardController extends Controller
 
         return redirect("/result")->with('success', "Les résultats ont bien été envoyés");
     }
+
+/*
+    ██ ███    ██ ███████  ██████ ██████  ██ ██████  ████████ ██  ██████  ███    ██
+    ██ ████   ██ ██      ██      ██   ██ ██ ██   ██    ██    ██ ██    ██ ████   ██
+    ██ ██ ██  ██ ███████ ██      ██████  ██ ██████     ██    ██ ██    ██ ██ ██  ██
+    ██ ██  ██ ██      ██ ██      ██   ██ ██ ██         ██    ██ ██    ██ ██  ██ ██
+    ██ ██   ████ ███████  ██████ ██   ██ ██ ██         ██    ██  ██████  ██   ████
+*/
 
     public function inscription(Request $request) {
         $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
