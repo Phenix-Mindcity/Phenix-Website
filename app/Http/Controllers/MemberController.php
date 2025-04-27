@@ -22,6 +22,22 @@ class MemberController extends Controller
     }
 
     public function editProfile(Request $request) {
+        $rules = array(
+            'name' => 'required',
+            'phone' => 'required',
+        );
+
+        $messages = [
+            'name.required' => "Vous devez donner votre nom",
+            'sponsor.phone' => "Vous devez indiquer un numéro de téléphone (Ou mettre un faux)",
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
         DB::table("users")
             ->where("id", Auth::user()->id)
             ->update(['fullname' => $request->input('name'), "phone" => $request->input('phone')]);
