@@ -112,12 +112,13 @@ class DashboardController extends Controller
 
     public function score(Request $request) {
         $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
+        $ecuries = DB::table('ecurie')->get();
         $users = DB::table('users')->get();
         $scores = DB::table('score')->orderBy('place', 'asc')->get();
         $finalScore = array();
 
         foreach($scores as $score) {
-            if (!array_key_exists($score->ecurie, $finalScore)) $finalScore[$score->ecurie] = $score->score;
+            if (!array_key_exists($score->ecurie, $finalScore)) $finalScore[$ecuries->where("name", $score->ecurie)->first()->id] = $score->score;
             else $finalScore[$score->ecurie] += $score->score;
         }
 
@@ -297,6 +298,7 @@ class DashboardController extends Controller
         $file = $request->file('logo');
         $sponsors = DB::table('sponsors')->get();
         $actualSponsor = $sponsors->where("id", $id)->first();
+        $description = $request->input('description') == null ? "" : $request->input('description');
 
         if ($actualSponsor->name != $request->input('name') && $sponsors->where("name", $request->input('name'))->first() != null) return redirect()->back()->withErrors("Ce nom existe déjà !");
 
@@ -305,7 +307,6 @@ class DashboardController extends Controller
             $rules = array(
                 'logo' => 'clamav|max:10240|required|image',
                 'name' => 'required',
-                'description' => 'required',
                 "partner" => 'required',
             );
 
@@ -315,7 +316,6 @@ class DashboardController extends Controller
                 'logo.max' => 'Le fichier est trop gros.',
                 'logo.image' => 'Le fichier doit être une image.',
                 'name.required' => "Vous devez donner le nom",
-                'description.required' => "Vous devez donner une description",
                 'partner.required' => "Vous devez donner indiquer si il est partenaire",
             ];
 
@@ -325,22 +325,19 @@ class DashboardController extends Controller
                 return redirect()->back()->withErrors($validator);
             }
 
-            Storage::disk('public')->put('/sponsors/' . $request->input('name') . "." . $file->getClientOriginalExtension(), file_get_contents($file));
+            Storage::disk('public')->put('/sponsors/' . $id . "." . $file->getClientOriginalExtension(), file_get_contents($file));
 
             DB::table("sponsors")
                 ->where("id", $id)
-                ->update(['name' => $request->input('name'), 'description' => $request->input('description'), 'partner' => $request->input('partner'), 'fileName'=> $request->input('name') . "." . $file->getClientOriginalExtension()]);
+                ->update(['name' => $request->input('name'), 'description' => $description, 'partner' => $request->input('partner'), 'fileName'=> $id . "." . $file->getClientOriginalExtension()]);
         } else {
             $rules = array(
                 'name' => 'required',
-                'description' => 'required',
                 "partner" => 'required',
             );
 
             $messages = [
-                'name.required' => "Vous devez donner le nom",
-                'description.required' => "Vous devez donner une description",
-                'partner.required' => "Vous devez donner indiquer si il est partenaire",
+                'name.required' => "Vous devez donner le nom",                'partner.required' => "Vous devez donner indiquer si il est partenaire",
             ];
 
             $validator = Validator::make($request->all(), $rules, $messages);
@@ -351,7 +348,7 @@ class DashboardController extends Controller
 
             DB::table("sponsors")
                 ->where("id", $id)
-                ->update(['name' => $request->input('name'), 'description' => $request->input('description'), 'partner' => $request->input('partner')]);
+                ->update(['name' => $request->input('name'), 'description' => $description, 'partner' => $request->input('partner')]);
         }
 
 
@@ -365,10 +362,11 @@ class DashboardController extends Controller
     }
 
     public function createSponsor(Request $request) {
+        $description = $request->input('description') == null ? "" : $request->input('description');
+
         $rules = array(
             'logo' => 'clamav|max:10240|required|image',
             'name' => 'required',
-            'description' => 'required',
             'partner' => 'required',
         );
 
@@ -378,7 +376,6 @@ class DashboardController extends Controller
             'logo.max' => 'Le fichier est trop gros.',
             'logo.image' => 'Le fichier doit être une image.',
             'name.required' => "Vous devez donner le nom",
-            'description.required' => "Vous devez donner une description",
             'partner.required' => "Vous devez donner indiquer si il est partenaire",
         ];
 
@@ -393,14 +390,18 @@ class DashboardController extends Controller
         $sponsors = DB::table('sponsors')->where("name", $request->input('name'))->get()->first();
         if ($sponsors != null) return redirect()->back()->withErrors("Ce nom existe déjà !");
 
+        $lastSponsor = DB::table('sponsors')->get()->last();
+        $id = $lastSponsor != null ? $lastSponsor->id+1 : 1;
 
-        Storage::disk('public')->put('/sponsors/' . $request->input('name') . "." . $file->getClientOriginalExtension(), file_get_contents($file));
+
+        Storage::disk('public')->put('/sponsors/' . $id . "." . $file->getClientOriginalExtension(), file_get_contents($file));
 
         DB::table("sponsors")
             ->insert([
+                'id' => $id,
                 'name' => $request->input('name'),
-                'description' => $request->input('description'),
-                'fileName' => $request->input('name') . "." . $file->getClientOriginalExtension(),
+                'description' => $description,
+                'fileName' => $id . "." . $file->getClientOriginalExtension(),
                 'partner' => $request->input('partner')
             ]);
 
@@ -462,11 +463,11 @@ class DashboardController extends Controller
                 return redirect()->back()->withErrors($validator);
             }
 
-            Storage::disk('public')->put('/ecuries/' . $request->input('name') . "." . $file->getClientOriginalExtension(), file_get_contents($file));
+            Storage::disk('public')->put('/ecuries/' . $id . "." . $file->getClientOriginalExtension(), file_get_contents($file));
 
             DB::table("ecurie")
                 ->where("id", $id)
-                ->update(['name' => $request->input('name'), 'sponsor' => $request->input('sponsor'), 'fileName'=> $request->input('name') . "." . $file->getClientOriginalExtension()]);
+                ->update(['name' => $request->input('name'), 'sponsor' => $request->input('sponsor'), 'fileName'=> $id . "." . $file->getClientOriginalExtension()]);
         } else {
             $rules = array(
                 'name' => 'required',
@@ -535,13 +536,17 @@ class DashboardController extends Controller
         $ecuries = DB::table('ecurie')->where("name", $request->input('name'))->get()->first();
         if ($ecuries != null) return redirect()->back()->withErrors("Ce nom existe déjà !");
 
-        Storage::disk('public')->put('/ecuries/' . $request->input('name') . "." . $file->getClientOriginalExtension(), file_get_contents($file));
+        $lastEcurie = DB::table('ecurie')->get()->last();
+        $id = $lastEcurie != null ? $lastEcurie->id+1 : 1;
+
+        Storage::disk('public')->put('/ecuries/' . $id . "." . $file->getClientOriginalExtension(), file_get_contents($file));
 
         DB::table("ecurie")
             ->insert([
+                'id' => $id,
                 'name' => $request->input('name'),
                 'sponsor' => $request->input('sponsor'),
-                'fileName' => $request->input('name') . "." . $file->getClientOriginalExtension(),
+                'fileName' => $id . "." . $file->getClientOriginalExtension(),
             ]);
 
         return redirect()->back()->with('success', "L'écurie a bien été ajouté");

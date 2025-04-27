@@ -259,7 +259,7 @@
           </div>
           <div class="flex flex-wrap items-center justify-center">
               @foreach ($sponsors as $sponsor)
-              <div class="text-center text-gray-500">
+              <div class="text-center text-gray-500 ml-4 mb-4">
                   <img class="mx-auto mb-4 h-36" src="{{ url('storage/sponsors/' . $sponsor->fileName) }}" alt="logo">
                   <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                       {{ $sponsor->name }}
