@@ -75,6 +75,25 @@ class DashboardController extends Controller
     }
 
     public function putBet(Request $request) {
+        $rules = array(
+            'ecurie' => 'required',
+            'montant' => 'required|numeric|min:1',
+        );
+
+        $messages = [
+            'montant.required' => 'Vous devez donner un nombre valide.',
+            'montant.numeric' => 'Vous devez donner un nombre valide.',
+            'montant.min' => 'Vous devez donner un nombre supérieur à 1.',
+            'ecurie.required' => 'Vous devez une écurie.',
+        ];
+
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
         $bet = DB::table('bet')->where("discord", Auth::user()->id)->where("course", $request->input('course'))->get();
         $currentCourse = DB::table("courses")->where("name", $request->input('course'))->get()->first();
         if ($bet->first() != null) return redirect()->back()->withErrors("Tu as déjà déposé.e un pari !");
@@ -83,7 +102,7 @@ class DashboardController extends Controller
         DB::table("bet")
             ->insert([
                 'discord' => Auth::user()->id,
-                'course' => $request->input('course'),
+                'course' => $currentCourse->name,
                 'ecurie' => $request->input('ecurie'),
                 'montant' => $request->input('montant'),
             ]);
