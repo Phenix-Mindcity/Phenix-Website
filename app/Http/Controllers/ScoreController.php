@@ -8,7 +8,6 @@ use View;
 
 class ScoreController extends Controller
 {
-
     public function result(Request $request) {
         $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
         $users = DB::table('users')->get();
