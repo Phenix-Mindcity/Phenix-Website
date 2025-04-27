@@ -128,11 +128,9 @@
                               <div class="w-full max-w-full shrink-0 md:w-6/12 md:flex-0 px-3">
                                   <label for="course" class="mb-2 ml-1 font-bold text-xs text-slate-700">Course</label>
                                   <select required name="course" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none">
-                                    <option value="Rallye">Rallye</option>
-                                    <option value="Moto">Moto GP</option>
-                                    <option value="Street Race">Street Race</option>
-                                    <option value="F1">F1</option>
-                                    <option value="Drift Contest">Drift Contest</option>
+                                    @foreach ($courses as $course)
+                                    <option value="{{ $course->name }}">{{ $course->name }}</option>
+                                    @endforeach
                                   </select>
                               </div>
                               <div class="w-full max-w-full shrink-0 md:w-6/12 md:flex-0 px-3">

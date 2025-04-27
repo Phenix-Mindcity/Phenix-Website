@@ -63,13 +63,14 @@ class DashboardController extends Controller
     }
 
     public function pari(Request $request) {
-        $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
+        $courses = DB::table("courses")->get();
         $bets = DB::table('bet')->where("discord", Auth::user()->id)->get();
         $ecuries = DB::table('ecurie')->get();
 
         return View::make("dashboard.pari")->with([
             "bets"=>$bets,
-            "ecuries"=>$ecuries
+            "ecuries"=>$ecuries,
+            "courses"=>$courses
         ]);
     }
 
