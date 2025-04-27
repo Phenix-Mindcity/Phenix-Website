@@ -95,7 +95,7 @@ class DashboardController extends Controller
         }
 
         $bet = DB::table('bet')->where("discord", Auth::user()->id)->where("course", $request->input('course'))->get();
-        $currentCourse = DB::table("courses")->where("curret", 1)->get()->first();
+        $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
         if ($bet->first() != null) return redirect()->back()->withErrors("Tu as déjà déposé.e un pari !");
         if (time() >= strtotime($currentCourse->date)) return redirect()->back()->withErrors("Il est trop tard pour parier !");
 
