@@ -50,13 +50,14 @@ public function view_pari(Request $request) {
     public function putBet(Request $request) {
         $rules = array(
             'ecurie' => 'required',
-            'montant' => 'required|numeric|min:1',
+            'montant' => 'required|numeric|min:1|digits_between:1,7',
         );
 
         $messages = [
             'montant.required' => 'Vous devez donner un nombre valide.',
             'montant.numeric' => 'Vous devez donner un nombre valide.',
             'montant.min' => 'Vous devez donner un nombre supérieur à 1.',
+            'montant.digits_between' => 'Vous devez donner un nombre supérieur à 1 et inférieur à 10 millions.',
             'ecurie.required' => 'Vous devez une écurie.',
         ];
 
