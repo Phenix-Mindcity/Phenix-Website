@@ -11,7 +11,7 @@ use View;
 
 class BetController extends Controller
 {
-public function view_pari(Request $request) {
+    public function view_pari(Request $request) {
         $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
         $users = DB::table('users')->get();
         $bets = DB::table('bet')->where("course", $currentCourse->name)->get();
@@ -50,13 +50,14 @@ public function view_pari(Request $request) {
     public function putBet(Request $request) {
         $rules = array(
             'ecurie' => 'required',
-            'montant' => 'required|numeric|min:1',
+            'montant' => 'required|numeric|min:1|digits_between:1,7',
         );
 
         $messages = [
             'montant.required' => 'Vous devez donner un nombre valide.',
             'montant.numeric' => 'Vous devez donner un nombre valide.',
             'montant.min' => 'Vous devez donner un nombre supérieur à 1.',
+            'montant.digits_between' => 'Vous devez donner un nombre supérieur à 1 et inférieur à 10 millions.',
             'ecurie.required' => 'Vous devez une écurie.',
         ];
 
@@ -67,8 +68,8 @@ public function view_pari(Request $request) {
             return redirect()->back()->withErrors($validator);
         }
 
-        $bet = DB::table('bet')->where("discord", Auth::user()->id)->where("course", $request->input('course'))->get();
         $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
+        $bet = DB::table('bet')->where("discord", Auth::user()->id)->where("course", $currentCourse->name)->get();
         if ($bet->first() != null) return redirect()->back()->withErrors("Tu as déjà déposé.e un pari !");
         if (time() >= strtotime($currentCourse->date)) return redirect()->back()->withErrors("Il est trop tard pour parier !");
 
@@ -83,4 +84,9 @@ public function view_pari(Request $request) {
         return redirect("/pari");
     }
 
+    public function deleteBet(Request $request, $id) {
+        DB::table('bet')->delete($id);
+
+        return redirect("/view_pari")->with('success', "Le pari a bien été supprimé");
+    }
 }

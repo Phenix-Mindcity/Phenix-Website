@@ -54,6 +54,9 @@ class InscriptionController extends Controller
         if ($ecurie == null) return redirect("/dashboard")->withErrors(["Le lien est invalide"]);
         $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
 
+        $pilote = DB::table('pilotes')->where("discord", Auth::user()->id)->where("course", $currentCourse->name)->get();
+        if ($pilote->first() != null) return redirect()->back()->withErrors("Tu es déjà inscrit !");
+
         Cache::delete($token);
 
         DB::table("pilotes")
