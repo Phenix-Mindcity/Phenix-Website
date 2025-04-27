@@ -19,6 +19,22 @@ Technologies :
 - Tailwind
 - Larascord
 
+Rank :
+- 0 : Tout le monde
+- 5 : Membre de l’association
+- 6 : Organisation des courses
+- 10 : Administration
+- 15 : Président.e
+
+
+
+Statut des pari :
+- 0 : En attente du paiement du parieur
+- 1 : En attente du résultat de la course
+- 2 : Perdu
+- 3 : Victoire - En attente du paiement de l’org
+- 4 : Victoire - Paiement effectué
+
 ## Bug connu
 
 - 
