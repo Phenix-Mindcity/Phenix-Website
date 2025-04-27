@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Session;
 class MemberController extends Controller
 {
     public function profile(Request $request) {
-        session(['url.intended' => url()->previous()]);
+        if (str_starts_with(url()->previous(), URL::to('/'))) session(['url.intended' => url()->previous()]);
         return View::make("dashboard.profile");
     }
 
