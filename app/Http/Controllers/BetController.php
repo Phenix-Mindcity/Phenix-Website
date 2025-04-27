@@ -84,4 +84,9 @@ public function view_pari(Request $request) {
         return redirect("/pari");
     }
 
+    public function deleteBet(Request $request, $id) {
+        DB::table('bet')->delete($id);
+
+        return redirect("/view_pari")->with('success', "Le pari a bien été supprimé");
+    }
 }

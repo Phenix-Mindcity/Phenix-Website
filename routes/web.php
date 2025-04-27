@@ -68,6 +68,7 @@ Route::middleware(['auth', checkProfile::class])->group(function () {
             Route::get('/deleteEcurie/{id}', [EcurieController::class, 'deleteEcurie']);
 
             Route::get('/validateBet/{BetID}', [BetController::class, 'validateBet']);
+            Route::get('/deleteBet/{id}', [BetController::class, 'deleteBet']);
 
 
             Route::middleware([isCA::class])->group(function () {
