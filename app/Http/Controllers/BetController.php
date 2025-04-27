@@ -11,7 +11,7 @@ use View;
 
 class BetController extends Controller
 {
-public function view_pari(Request $request) {
+    public function view_pari(Request $request) {
         $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
         $users = DB::table('users')->get();
         $bets = DB::table('bet')->where("course", $currentCourse->name)->get();
