@@ -42,7 +42,8 @@ class MemberController extends Controller
             ->where("id", Auth::user()->id)
             ->update(['fullname' => $request->input('name'), "phone" => $request->input('phone')]);
 
-        return redirect(session()->get('url.intended'));
+        if (session()->get('url.intended') != null) return redirect(session()->get('url.intended'));
+        return redirect("/dashboard");
     }
 
     public function membres(Request $request) {
