@@ -35,8 +35,18 @@
       </div>
     </nav>
     <!--Hero-->
-    <div class="pt-24 mt-24">
-      <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+    <div class="pt-24 mt-6">
+        <div class="w-full px-32 py-6 mx-auto">
+            @if (session('error'))
+            <div class="text-center py-4 lg:px-4">
+              <div class="p-2 bg-red-800 items-center text-indigo-100 leading-none lg:rounded-full flex lg:inline-flex" role="alert">
+                <span class="flex rounded-full bg-red-500 uppercase px-2 py-1 text-xs font-bold mr-3">Erreur</span>
+                <span class="font-semibold mr-2 text-left flex-auto">{{ session('error') }}</span>
+              </div>
+            </div>
+            @endif
+        </div>
+      <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center mt-12">
         <!--Left Col-->
         <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
           <p class="uppercase tracking-loose w-full">Phenix Fivefold Crown</p>
@@ -68,6 +78,7 @@
         </g>
       </svg>
     </div>
+
     <section class="bg-white border-b py-8">
       <div class="container max-w-5xl mx-auto m-8">
         <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">

@@ -167,7 +167,7 @@ return [
     |
     */
 
-    'redirect_login' => '/',
+    'redirect_login' => '/dashboard',
 
     /*
     |--------------------------------------------------------------------------
@@ -181,15 +181,15 @@ return [
 
     'error_messages' => [
         'missing_code' => [
-            'message' => 'The authorization code is missing.',
+            'message' => 'Il manque le code d\'autorisation',
             'redirect' => '/'
         ],
         'invalid_code' => [
-            'message' => 'The authorization code is invalid.',
+            'message' => 'Le code d\'autorisation est invalide',
             'redirect' => '/'
         ],
         'authorization_failed' => [
-            'message' => 'The authorization failed.',
+            'message' => 'L\'autorisation a échoué',
             'redirect' => '/'
         ],
         'missing_email' => [
@@ -197,11 +197,11 @@ return [
             'redirect' => '/'
         ],
         'invalid_user' => [
-            'message' => 'The user ID doesn\'t match the logged-in user.',
+            'message' => 'Une erreur est survenue',
             'redirect' => '/'
         ],
         'database_error' => [
-            'message' => 'There was an error with the database. Please try again later.',
+            'message' => 'Une erreur est survenue dans la base de données',
             'redirect' => '/'
         ],
         'missing_guilds_scope' => [
@@ -213,27 +213,27 @@ return [
             'redirect' => '/'
         ],
         'authorization_failed_guilds' => [
-            'message' => 'Couldn\'t get the servers you\'re in.',
+            'message' => 'Impossible de récupérer vos serveurs',
             'redirect' => '/'
         ],
         'not_member_guild_only' => [
-            'message' => 'You are not a member of the required guilds.',
+            'message' => 'Tu dois être whitelist sur MindCity.',
             'redirect' => '/'
         ],
         'missing_access_token' => [
-            'message' => 'The access token is missing.',
+            'message' => 'Le code d\'accès est introuvable',
             'redirect' => '/'
         ],
         'authorization_failed_roles' => [
-            'message' => 'Couldn\'t get the roles you have.',
+            'message' => 'Impossible de récupérer vos rôles',
             'redirect' => '/'
         ],
         'missing_role' => [
-            'message' => 'You don\'t have the required roles.',
+            'message' => 'Tu dois être whitelist sur MindCity.',
             'redirect' => '/'
         ],
         'revoke_token_failed' => [
-            'message' => 'An error occurred while trying to revoke your access token.',
+            'message' => 'Impossible de révoquer ton code',
             'redirect' => '/'
         ],
         'user_deleted' => [
