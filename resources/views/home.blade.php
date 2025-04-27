@@ -90,19 +90,24 @@
         <div class="flex flex-wrap">
           <div class="w-5/6 sm:w-1/2 p-6">
             <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-              Course 1
+              Rallye
             </h3>
             <p class="text-gray-600 mb-8">
-                Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique
+              Un cinq cylindre de 200 chevaux, 4 roues motrices, le 0 à 100 km/h abbatu en 7.1 secondes.
+              <br><br>
+              Le tout dans des chemins de terre, en enchainant les virages, à quelques mètres du vide
+              <br>
+              <br>
+              Retrouvez l'âme du Groupe B, dans une voiture mythique, rappelant l'âge d'or du Rallye mondiale.
 
               @if ($courses->where("name", "Rallye")->first()->date != null)
               <br><br>
-              <b>Date : </b>
+              <b>Date : {{ \Carbon\Carbon::parse($courses->where("name", "Rallye")->first()->date)->translatedFormat('d F Y à H:i'); }}</b>
               @endif
             </p>
           </div>
           <div class="w-full sm:w-1/2 p-6">
-            <img src="{{ url('storage/img/courses/ringofhell.webp') }}">
+            <img src="{{ url('storage/img/courses/rally.webp') }}">
           </div>
         </div>
         <div class="flex flex-wrap flex-col-reverse sm:flex-row">
@@ -112,14 +117,16 @@
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
               <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Course 2
+                Ring Of Hell
               </h3>
               <p class="text-gray-600 mb-8">
-                Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique
+                Un cercle sans fin, tournez sans jamais revenir en arrière, et priez que le sors vous soit favorable
+                <br><br>
+                Le dernier moteur qui tourne, sera couronné gagnant.
 
                 @if ($courses->where("name", "Ring Of Hell")->first()->date != null)
                 <br><br>
-                <b>Date : </b>
+                <b>Date : {{ \Carbon\Carbon::parse($courses->where("name", "Ring Of Hell")->first()->date)->translatedFormat('d F Y à H:i'); }}</b>
                 @endif
               </p>
             </div>
@@ -128,35 +135,41 @@
         <div class="flex flex-wrap">
           <div class="w-5/6 sm:w-1/2 p-6">
             <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-              Course 3
+              Street Race
             </h3>
             <p class="text-gray-600 mb-8">
-              Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique
+              Non, vous ne rêvez pas, on a réussi à ressortir ce véhicule mythique, produit à 400 exemplaires, une légende du japon, une déesse de la route
+              <br><br>
+              Le moteur qui ronronne, les pneus qui agrippe le bitume, la ville est notre terrain de jeu.
               @if ($courses->where("name", "Street Race")->first()->date != null)
               <br><br>
-              <b>Date : </b>
+              <b>Date : {{ \Carbon\Carbon::parse($courses->where("name", "Street Race")->first()->date)->translatedFormat('d F Y à H:i'); }}</b>
               @endif
             </p>
           </div>
           <div class="w-full sm:w-1/2 p-6">
-            <img src="{{ url('storage/img/courses/ringofhell.webp') }}">
+            <img src="{{ url('storage/img/courses/streetrace.webp') }}">
           </div>
         </div>
         <div class="flex flex-wrap flex-col-reverse sm:flex-row">
           <div class="w-full sm:w-1/2 p-6 mt-6">
-            <img src="{{ url('storage/img/courses/ringofhell.webp') }}">
+            <img src="{{ url('storage/img/courses/f1.webp') }}">
           </div>
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
               <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Course 4
+                F1
               </h3>
               <p class="text-gray-600 mb-8">
-                Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatiquen peu de chance, vous croiserez un Espace sur la piste</small>
+                Oui oui, vous avez bien lu, une Formule 1, pas une petite Formule 2, non, on veux le meilleur ici.
+                <br><br>
+                Posé.e dans le cockpit, les yeux rivées sur la piste, le V12 qui crie de toutes ses forces, soyez prêt.e
+                <br><br>
+                <small>Avec un peu de chance, vous croiserez un Espace sur la piste</small>
 
                 @if ($courses->where("name", "F1")->first()->date != null)
                 <br><br>
-                <b>Date : </b>
+                <b>Date : {{ \Carbon\Carbon::parse($courses->where("name", "F1")->first()->date)->translatedFormat('d F Y à H:i'); }}</b>
                 @endif
               </p>
             </div>
@@ -165,19 +178,21 @@
         <div class="flex flex-wrap">
           <div class="w-5/6 sm:w-1/2 p-6">
             <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-              Course 5
+              Truck Battle
             </h3>
             <p class="text-gray-600 mb-8">
-              Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique
+              J'aurais aimée vous teaser, vous dire à quel point ce sera incroyable, mais pourquoi tout spoiler ?
+              <br><br>
+              Je dirais seulement 2 mots : Aucune règle.
 
               @if ($courses->where("name", "Truck")->first()->date != null)
               <br><br>
-              <b>Date :</b>
+              <b>Date : {{ \Carbon\Carbon::parse($courses->where("name", "Truck")->first()->date)->translatedFormat('d F Y à H:i'); }}</b>
               @endif
             </p>
           </div>
           <div class="w-full sm:w-1/2 p-6">
-            <img src="{{ url('storage/img/courses/ringofhell.webp') }}">
+            <img src="{{ url('storage/img/courses/truck.webp') }}">
           </div>
         </div>
       </div>
