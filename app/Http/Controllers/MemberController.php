@@ -24,12 +24,10 @@ class MemberController extends Controller
     public function editProfile(Request $request) {
         $rules = array(
             'name' => 'required',
-            'phone' => 'required',
         );
 
         $messages = [
             'name.required' => "Vous devez donner votre nom",
-            'sponsor.phone' => "Vous devez indiquer un numéro de téléphone (Ou mettre un faux)",
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -40,7 +38,7 @@ class MemberController extends Controller
 
         DB::table("users")
             ->where("id", Auth::user()->id)
-            ->update(['fullname' => $request->input('name'), "phone" => $request->input('phone')]);
+            ->update(['fullname' => $request->input('name'), "phone" => $request->input('phone') == null ? "555-0000" : $request->input('phone')]);
 
         if (session()->get('url.intended') != null) return redirect(session()->get('url.intended'));
         return redirect("/dashboard");
