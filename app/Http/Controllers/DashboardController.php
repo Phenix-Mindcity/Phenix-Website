@@ -302,7 +302,6 @@ class DashboardController extends Controller
 
         if ($actualSponsor->name != $request->input('name') && $sponsors->where("name", $request->input('name'))->first() != null) return redirect()->back()->withErrors("Ce nom existe déjà !");
 
-
         if ($file) {
             $rules = array(
                 'logo' => 'clamav|max:10240|required|image',
@@ -337,7 +336,8 @@ class DashboardController extends Controller
             );
 
             $messages = [
-                'name.required' => "Vous devez donner le nom",                'partner.required' => "Vous devez donner indiquer si il est partenaire",
+                'name.required' => "Vous devez donner le nom",
+                'partner.required' => "Vous devez donner indiquer si il est partenaire",
             ];
 
             $validator = Validator::make($request->all(), $rules, $messages);
@@ -409,7 +409,12 @@ class DashboardController extends Controller
     }
 
     public function deleteSponsor(Request $request, $id) {
+        $actualSponsor = DB::table('sponsors')->where("id", $id)->get()->first();
         DB::table('sponsors')->delete($id);
+
+            DB::table("ecurie")
+                ->where("sponsor", $actualSponsor->name)
+                ->update(['sponsor' => "Aucun"]);
 
         return redirect("/sponsor")->with('success', "Le sponsor a bien été supprimé");
     }
@@ -553,7 +558,12 @@ class DashboardController extends Controller
     }
 
     public function deleteEcurie(Request $request, $id) {
+        $actualEcurie = DB::table('ecurie')->where("id", $id)->get()->first();
         DB::table('ecurie')->delete($id);
+
+        DB::table("bet")->where('ecurie', $actualEcurie->name)->delete();
+        DB::table("pilotes")->where('ecurie', $actualEcurie->name)->delete();
+        DB::table("score")->where('ecurie', $actualEcurie->name)->delete();
 
         return redirect("/ecurie")->with('success', "L'écurie a bien été supprimé");
     }
