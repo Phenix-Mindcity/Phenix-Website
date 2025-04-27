@@ -4,6 +4,8 @@
 ## Informations
 
 Prérequis :
+- PHP 8.x
+- ClamAV
 - CronJob
 - Serveur MySQL
 
