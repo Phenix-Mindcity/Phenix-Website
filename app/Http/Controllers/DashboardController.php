@@ -170,10 +170,10 @@ class DashboardController extends Controller
         }
 
         $file = $request->file('photo');
-
-        Storage::disk('public')->put('/profile/' . $request->input('name') . ".png", file_get_contents($file));
-
         $token = Str::random(32);
+
+        Storage::disk('public')->put('/profile/' . $token . ".png", file_get_contents($file));
+
         Cache::add($token, now()->addMinutes(60));
 
         return redirect()->back()->with('success', "Pour ajouter un membre, donner lui ce lien : " . URL::to("/join/".$token));
@@ -181,8 +181,11 @@ class DashboardController extends Controller
 
     public function join(Request $request, $token) {
         if (Cache::get($token) == null) return redirect("/dashboard")->withErrors(["Le lien est invalide"]);
+        if (Auth::user()->rank >= 5) return redirect()->back()->withErrors(["T'es déjà membre.."]);
 
         Cache::delete($token);
+
+        Storage::disk('public')->move('/profile/' . $token . ".png", '/profile/' . Auth::user()->id . ".png");
 
         DB::table("users")
             ->where("id", Auth::user()->id)
