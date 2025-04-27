@@ -20,7 +20,7 @@ Les étapes pour le reproduire
 Si possible, donne nous un screenshot
 
 
--  Date et heure (si possible : 
+-  Date et heure (si possible) : 
  - Appareil: PC, Téléphone, etc
  - OS: Windows, Android, iOS
  - Navigateur: Firefox, Chrome, etc
