@@ -1,4 +1,4 @@
-<p align="center"><img src="https://i.ibb.co/gM8yqzVc/Global-Full.png" alt="Logo"></p>
+<p align="center"><img src="https://phenix.mindcity-rp.fr/storage/img/GlobalFull.png" alt="Logo"></p>
 
 
 ## Informations
@@ -12,7 +12,7 @@ Technologies :
 - MySQL
 - Tailwind
 - Larascord
-- 
+
 ## Bug connu
 
 - 
