@@ -4,6 +4,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 
 use App\Http\Middleware\isMembre;
+use App\Http\Middleware\isOrga;
 use App\Http\Middleware\isCA;
 use App\Http\Middleware\checkProfile;
 use App\Http\Middleware\Language;
@@ -41,37 +42,40 @@ Route::middleware(['auth', checkProfile::class])->group(function () {
     Route::post('/putBet', [DashboardController::class, 'putBet']);
 
     Route::middleware([isMembre::class])->group(function () {
-        Route::get('/inscription', [DashboardController::class, 'inscription'])->name('dashboard.inscription');
-        Route::get('/editPilote/{id}', [DashboardController::class, 'editPilote']);
-        Route::post('/addPilote', [DashboardController::class, 'addPilote']);
-        Route::post('/editPilote/{id}', [DashboardController::class, 'editPilotePost']);
-        Route::get('/deletePilote/{id}', [DashboardController::class, 'deletePilote']);
-
         Route::get('/view_pari', [DashboardController::class, 'view_pari'])->name('dashboard.view_pari');
 
-        Route::get('/sponsor', [DashboardController::class, 'sponsor'])->name('dashboard.sponsor');
-        Route::get('/editSponsor/{id}', [DashboardController::class, 'editSponsor']);
-        Route::post('/createSponsor', [DashboardController::class, 'createSponsor']);
-        Route::post('/editSponsor/{id}', [DashboardController::class, 'editSponsorPost']);
-        Route::get('/deleteSponsor/{id}', [DashboardController::class, 'deleteSponsor']);
+        Route::middleware([isOrga::class])->group(function () {
+            Route::get('/inscription', [DashboardController::class, 'inscription'])->name('dashboard.inscription');
+            Route::get('/editPilote/{id}', [DashboardController::class, 'editPilote']);
+            Route::post('/addPilote', [DashboardController::class, 'addPilote']);
+            Route::post('/editPilote/{id}', [DashboardController::class, 'editPilotePost']);
+            Route::get('/deletePilote/{id}', [DashboardController::class, 'deletePilote']);
 
-        Route::get('/ecurie', [DashboardController::class, 'ecurie'])->name('dashboard.ecurie');
-        Route::get('/editEcurie/{id}', [DashboardController::class, 'editEcurie']);
-        Route::post('/createEcurie', [DashboardController::class, 'createEcurie']);
-        Route::post('/editEcurie/{id}', [DashboardController::class, 'editEcuriePost']);
-        Route::get('/deleteEcurie/{id}', [DashboardController::class, 'deleteEcurie']);
+            Route::get('/sponsor', [DashboardController::class, 'sponsor'])->name('dashboard.sponsor');
+            Route::get('/editSponsor/{id}', [DashboardController::class, 'editSponsor']);
+            Route::post('/createSponsor', [DashboardController::class, 'createSponsor']);
+            Route::post('/editSponsor/{id}', [DashboardController::class, 'editSponsorPost']);
+            Route::get('/deleteSponsor/{id}', [DashboardController::class, 'deleteSponsor']);
 
-        Route::middleware([isCA::class])->group(function () {
-            Route::get('/membres', [DashboardController::class, 'membres'])->name('dashboard.membres');
-            Route::get('/editMember/{id}', [DashboardController::class, 'editMember']);
-            Route::post('/addMember', [DashboardController::class, 'addMember']);
-            Route::post('/editMember/{id}', [DashboardController::class, 'editMemberPost']);
-            Route::get('/deleteMember/{id}', [DashboardController::class, 'deleteMember']);
-
-            Route::get('/result', [DashboardController::class, 'result'])->name('dashboard.result');
-            Route::post('/setResult', [DashboardController::class, 'setResult']);
+            Route::get('/ecurie', [DashboardController::class, 'ecurie'])->name('dashboard.ecurie');
+            Route::get('/editEcurie/{id}', [DashboardController::class, 'editEcurie']);
+            Route::post('/createEcurie', [DashboardController::class, 'createEcurie']);
+            Route::post('/editEcurie/{id}', [DashboardController::class, 'editEcuriePost']);
+            Route::get('/deleteEcurie/{id}', [DashboardController::class, 'deleteEcurie']);
 
             Route::get('/validateBet/{BetID}', [DashboardController::class, 'validateBet']);
+
+
+            Route::middleware([isCA::class])->group(function () {
+                Route::get('/membres', [DashboardController::class, 'membres'])->name('dashboard.membres');
+                Route::get('/editMember/{id}', [DashboardController::class, 'editMember']);
+                Route::post('/addMember', [DashboardController::class, 'addMember']);
+                Route::post('/editMember/{id}', [DashboardController::class, 'editMemberPost']);
+                Route::get('/deleteMember/{id}', [DashboardController::class, 'deleteMember']);
+
+                Route::get('/result', [DashboardController::class, 'result'])->name('dashboard.result');
+                Route::post('/setResult', [DashboardController::class, 'setResult']);
+            });
         });
     });
 });

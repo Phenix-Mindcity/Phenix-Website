@@ -189,7 +189,7 @@ class DashboardController extends Controller
 
         DB::table("users")
             ->where("id", Auth::user()->id)
-            ->update(['rank' => 5]);
+            ->update(['rank' => 5, "role" => "Membre"]);
 
         file_get_contents("http://localhost:5000/updateMember?discord=" . Auth::user()->id);
 
