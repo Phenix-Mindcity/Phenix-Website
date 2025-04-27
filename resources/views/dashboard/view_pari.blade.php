@@ -89,7 +89,7 @@
                                                 <span class="text-xs font-semibold leading-tight">{{ $bet->course }}</span>
                                             </td>
                                            <td class="p-2 text-sm leading-normal align-middle bg-transparent border-b whitespace-nowrap">
-                                                <span class="text-xs font-semibold leading-tight">{{ $users->where("id", $bet->discord)->first()->fullname }}</span>
+                                                <span class="text-xs font-semibold leading-tight">{{ $users->where("id", $bet->discord)->first()->fullname }} ({{ $bet->id }})</span>
                                             </td>
                                             <td class="p-2 text-sm leading-normal align-middle bg-transparent border-b whitespace-nowrap">
                                                 <span class="text-xs font-semibold leading-tight">{{ $users->where("id", $bet->discord)->first()->phone }}</span>
