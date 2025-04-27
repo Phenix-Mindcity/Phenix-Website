@@ -292,6 +292,11 @@ class DashboardController extends Controller
 
     public function editSponsorPost(Request $request, $id) {
         $file = $request->file('logo');
+        $sponsors = DB::table('sponsors')->get();
+        $actualSponsor = $sponsors->where("id", $id)->first();
+
+        if ($actualSponsor->name != $request->input('name') && $sponsors->where("name", $request->input('name'))->first() != null) return redirect()->back()->withErrors("Ce nom existe déjà !");
+
 
         if ($file) {
             $rules = array(
@@ -346,6 +351,13 @@ class DashboardController extends Controller
                 ->update(['name' => $request->input('name'), 'description' => $request->input('description'), 'partner' => $request->input('partner')]);
         }
 
+
+        if ($actualSponsor->name != $request->input('name')) {
+            DB::table("ecurie")
+                ->where("sponsor", $actualSponsor->name)
+                ->update(['sponsor' => $request->input('name')]);
+        }
+
         return redirect("/sponsor")->with('success', "Le sponsor a bien été modifié");
     }
 
@@ -374,6 +386,9 @@ class DashboardController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator);
         }
+
+        $sponsors = DB::table('sponsors')->where("name", $request->input('name'))->get()->first();
+        if ($sponsors != null) return redirect()->back()->withErrors("Ce nom existe déjà !");
 
 
         Storage::disk('public')->put('/sponsors/' . $request->input('name') . "." . $file->getClientOriginalExtension(), file_get_contents($file));
@@ -417,6 +432,10 @@ class DashboardController extends Controller
 
     public function editEcuriePost(Request $request, $id) {
         $file = $request->file('logo');
+        $ecuries = DB::table('ecurie')->get();
+        $actualEcurie = $ecuries->where("id", $id)->first();
+
+        if ($actualEcurie->name != $request->input('name') && $ecuries->where("name", $request->input('name'))->first() != null) return redirect()->back()->withErrors("Ce nom existe déjà !");
 
         if ($file) {
             $rules = array(
@@ -467,6 +486,22 @@ class DashboardController extends Controller
                 ->update(['name' => $request->input('name'), 'sponsor' => $request->input('sponsor')]);
         }
 
+        if ($actualEcurie->name != $request->input('name')) {
+            DB::table("bet")
+                ->where("ecurie", $actualEcurie->name)
+                ->update(['ecurie' => $request->input('name')]);
+
+            DB::table("pilotes")
+                ->where("ecurie", $actualEcurie->name)
+                ->update(['ecurie' => $request->input('name')]);
+
+            DB::table("score")
+                ->where("ecurie", $actualEcurie->name)
+                ->update(['ecurie' => $request->input('name')]);
+        }
+
+
+
         return redirect("/ecurie")->with('success', "L'écurie a bien été modifié");
     }
 
@@ -494,6 +529,8 @@ class DashboardController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
+        $ecuries = DB::table('ecurie')->where("name", $request->input('name'))->get()->first();
+        if ($ecuries != null) return redirect()->back()->withErrors("Ce nom existe déjà !");
 
         Storage::disk('public')->put('/ecuries/' . $request->input('name') . "." . $file->getClientOriginalExtension(), file_get_contents($file));
 
