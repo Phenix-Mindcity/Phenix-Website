@@ -4289,3 +4289,29 @@ h6 {
     opacity: 0.65;
   }
 }
+
+.sidebar ul li > a {
+	transition: all 0.5s ease;
+	border-radius: 0.5rem;
+	border: 1px solid transparent;
+}
+
+.sidebar ul li:hover > a:not(.bg-white) {
+	background-color: rgb(255 255 255);
+	border: 1px solid #c83776;
+	border-radius: 0.5rem;
+	color: rgb(52 71 103);
+	font-weight: 600;
+}
+
+.username-navbar {
+	border-radius: 0.5rem;
+	border: 1px solid #ddd;
+	padding: 10px 20px;
+}
+
+.username-navbar:hover {
+	background: linear-gradient(to right, #8a136d, #d54885);
+	color: white;
+	font-weight: 600;
+}
