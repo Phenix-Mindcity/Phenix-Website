@@ -12,7 +12,7 @@
           </li> -->
 
           <li class="flex items-center">
-            <a href="#" class="username-navbar block px-0 py-2 text-sm font-semibold transition-all ease-nav-brand text-slate-500">
+            <div class="block px-0 py-2 text-sm font-semibold transition-all ease-nav-brand text-slate-500">
               @if (auth()->user()->rank >= 5)
               <img
                 src="{{ url('storage/profile/' . auth()->user()->id . '.png') }}"
@@ -20,7 +20,7 @@
                 class="inline-flex items-center justify-center mr-2 text-white transition-all duration-200 ease-in-out w-9 h-9 text-sm rounded-circle"/>
               @endif
               <span class="hidden sm:inline">{{ auth()->user()->fullname }}</span>
-            </a>
+            </div>
           </li>
 
         </ul>
