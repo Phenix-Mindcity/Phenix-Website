@@ -66,7 +66,7 @@ class InscriptionController extends Controller
                 'ecurie' => $ecurie,
             ]);
 
-        file_get_contents("http://localhost:5000/updatePilote?discord=" . Auth::user()->id);
+        curl_init("http://localhost:5000/updatePilote?discord=" . Auth::user()->id);
 
         return redirect()->back()->with('success', "Tu es bien inscrit.e, félicitation !");
     }
@@ -107,7 +107,7 @@ class InscriptionController extends Controller
     public function deletePilote(Request $request, $id) {
         DB::table('pilotes')->delete($id);
 
-        file_get_contents("http://localhost:5000/updatePilote?discord=" . Auth::user()->id);
+        curl_init("http://localhost:5000/updatePilote?discord=" . Auth::user()->id);
 
         return redirect("/inscription")->with('success', "L'inscription a bien été supprimé");
     }
