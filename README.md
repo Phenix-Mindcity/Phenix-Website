@@ -37,6 +37,24 @@ Statut des pari :
 - 5 : Victoire - En attente du paiement de l’org
 - 6 : Victoire - Paiement effectué
 
+## Mettre en place son environment dev : 
+- composer install
+- npm install
+- Créer une app discord
+- Rentrer le Client ID et Client Secret dans le .env (`LARASCORD_CLIENT_ID` et `LARASCORD_CLIENT_SECRET`)
+- Indiquer l'URL de redirection sur l'app discord (URL_APP/discord/callback)
+- Ajouter votre config MySQL dans le .env
+- Pour un env dev
+  - `APP_ENV` en `local`
+  - `APP_DEBUG` en `true`
+  - `CLAMAV_SKIP_VALIDATION` en `true`
+- php artisan migrate
+- php artisan key:generate
+- php artisan storage:link
+
+Pour lancer le serveur web :
+- php artisan serve
+
 ## Bug connu
 
 - 
