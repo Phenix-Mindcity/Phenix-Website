@@ -4296,6 +4296,7 @@ h6 {
 	background-color: rgb(255 255 255);
 	border: 1px solid #c83776;
 	color: rgb(52 71 103);
+    font-weight: 600;
 }
 
 .username-navbar {
