@@ -4293,10 +4293,10 @@ h6 {
 }
 
 .sidebar ul li:hover > a:not(.bg-white) {
-	background-color: #e86ba3;
+	background-color: rgb(255 255 255);
 	border: 1px solid #c83776;
 	border-radius: 0.5rem;
-	color: rgb(52 71 103 / var(--tw-text-opacity));
+	color: rgb(52 71 103);
 	font-weight: 600;
 }
 
@@ -4307,8 +4307,7 @@ h6 {
 }
 
 .username-navbar:hover {
-	background-color: #e86ba3;
-	border: 1px solid #c83776;
-	color: rgb(52 71 103 / var(--tw-text-opacity));
+	background: linear-gradient(to right, #8a136d, #d54885);
+	color: white;
 	font-weight: 600;
 }
