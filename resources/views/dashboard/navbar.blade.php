@@ -12,7 +12,7 @@
           </li> -->
 
           <li class="flex items-center">
-            <div class="block px-0 py-2 text-sm font-semibold transition-all ease-nav-brand text-slate-500">
+            <div class="username-navbar block px-0 py-2 text-sm font-semibold transition-all ease-nav-brand text-slate-500">
               @if (auth()->user()->rank >= 5)
               <img
                 src="{{ url('storage/profile/' . auth()->user()->id . '.png') }}"

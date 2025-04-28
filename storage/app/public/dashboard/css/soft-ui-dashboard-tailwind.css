@@ -4287,7 +4287,7 @@ h6 {
 }
 
 .sidebar ul li > a {
-	transition: all 0.5s ease;
+	transition: all 0.2s ease;
 	border-radius: 0.5rem;
 	border: 1px solid transparent;
 }
@@ -4304,10 +4304,4 @@ h6 {
 	border-radius: 0.5rem;
 	border: 1px solid #ddd;
 	padding: 10px 20px;
-}
-
-.username-navbar:hover {
-	background: linear-gradient(to right, #8a136d, #d54885);
-	color: white;
-	font-weight: 600;
 }
