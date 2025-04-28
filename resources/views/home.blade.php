@@ -341,7 +341,10 @@
                 <div class="text-gray-800">Twitter : @Phenix</div>
               </li>
               <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                <div class="text-gray-800">Github : <a href="https://github.com/Phenix-Mindcity/Phenix-Website">Phenix-Mindcity</a></div>
+                <div class="text-gray-800"><a target="_blank" href="https://github.com/Phenix-Mindcity/Phenix-Website">Code source du site</a></div>
+              </li>
+              <li class="mt-2 inline-block mr-2 md:block md:mr-0">
+                <div class="text-gray-800"><a target="_blank" href="https://github.com/Phenix-Mindcity/Phenix-Documents">Nos documents</a></div>
               </li>
             </ul>
           </div>
