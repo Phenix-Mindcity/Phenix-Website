@@ -68,10 +68,6 @@ Route::middleware(['auth', checkProfile::class])->group(function () {
             Route::post('/editEcurie/{id}', [EcurieController::class, 'editEcuriePost']);
             Route::get('/deleteEcurie/{id}', [EcurieController::class, 'deleteEcurie']);
 
-            Route::get('/validateBet/{BetID}', [BetController::class, 'validateBet']);
-            Route::get('/deleteBet/{id}', [BetController::class, 'deleteBet']);
-
-
             Route::middleware([isCA::class])->group(function () {
                 Route::get('/membres', [MemberController::class, 'membres'])->name('dashboard.membres');
                 Route::get('/editMember/{id}', [MemberController::class, 'editMember']);
@@ -81,6 +77,10 @@ Route::middleware(['auth', checkProfile::class])->group(function () {
 
                 Route::get('/result', [ScoreController::class, 'result'])->name('dashboard.result');
                 Route::post('/setResult', [ScoreController::class, 'setResult']);
+
+                Route::get('/validateBet/{BetID}', [BetController::class, 'validateBet']);
+                Route::get('/deleteBet/{id}', [BetController::class, 'deleteBet']);
+                Route::get('/calculBet', [BetController::class, 'calculBet']);
             });
         });
     });

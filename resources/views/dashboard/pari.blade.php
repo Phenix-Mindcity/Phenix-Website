@@ -77,6 +77,7 @@
                                             <th class="px-6 py-3 pl-2 text-center font-bold tracking-normal text-left uppercase align-middle bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70">Course</th>
                                             <th class="px-6 py-3 pl-2 text-center font-bold tracking-normal text-left uppercase align-middle bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70">Écurie</th>
                                             <th class="px-6 py-3 pl-2 text-center font-bold tracking-normal text-left uppercase align-middle bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70">Montant</th>
+                                            <th class="px-6 py-3 pl-2 text-center font-bold tracking-normal text-left uppercase align-middle bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70">Gain</th>
                                             <th class="px-6 py-3 pl-2 text-center font-bold tracking-normal text-left uppercase align-middle bg-transparent border-b letter border-b-solid text-xxs whitespace-nowrap border-b-gray-200 text-slate-400 opacity-70">Status</th>
                                         </tr>
                                     </thead>
@@ -93,16 +94,23 @@
                                                 <span class="text-xs font-semibold leading-tight">{{ $bet->montant }} $</span>
                                             </td>
                                             <td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap">
+                                                <span class="text-xs font-semibold leading-tight {{ $bet->paiement == 0 ? '' : 'text-green-800' }}">{{ $bet->paiement == 0 ?  $bet->paiement : "+ " . $bet->paiement - $bet->montant }} $</span>
+                                            </td>
+                                            <td class="p-2 text-sm leading-normal text-center align-middle bg-transparent border-b whitespace-nowrap">
                                                 @if ($bet->status == 0)
                                                 <span class="py-2.2 px-3.6 text-xs rounded-1.8 inline-block whitespace-nowrap text-center bg-gradient-to-tl from-red-600 to-rose-400 align-baseline font-bold uppercase leading-none text-white">En attente de confirmation de ton paiement</span>
                                                 @elseif ($bet->status == 1)
                                                 <span class="py-2.2 px-3.6 text-xs rounded-1.8 inline-block whitespace-nowrap text-center bg-gradient-to-tl from-red-500 to-yellow-400 align-baseline font-bold uppercase leading-none text-white">En attente du résultat</span>
                                                 @elseif ($bet->status == 2)
-                                                <span class="py-2.2 px-3.6 text-xs rounded-1.8 inline-block whitespace-nowrap text-center bg-gradient-to-tl from-red-600 to-rose-400 align-baseline font-bold uppercase leading-none text-white">Perdu</span>
+                                                <span class="py-2.2 px-3.6 text-xs rounded-1.8 inline-block whitespace-nowrap text-center bg-gradient-to-tl from-red-600 to-rose-400 align-baseline font-bold uppercase leading-none text-white">En attente de confirmation de ton paiement</span>
                                                 @elseif ($bet->status == 3)
-                                                <span class="py-2.2 px-3.6 text-xs rounded-1.8 inline-block whitespace-nowrap text-center bg-gradient-to-tl from-blue-600 to-cyan-400 align-baseline font-bold uppercase leading-none text-white">Paiement en cours</span>
+                                                <span class="py-2.2 px-3.6 text-xs rounded-1.8 inline-block whitespace-nowrap text-center bg-gradient-to-tl from-red-600 to-rose-400 align-baseline font-bold uppercase leading-none text-white">Perdu</span>
                                                 @elseif ($bet->status == 4)
-                                                <span class="py-2.2 px-3.6 text-xs rounded-1.8 inline-block whitespace-nowrap text-center bg-gradient-to-tl from-green-600 to-lime-400 align-baseline font-bold uppercase leading-none text-white">Paiement effectué</span>
+                                                <span class="py-2.2 px-3.6 text-xs rounded-1.8 inline-block whitespace-nowrap text-center bg-gradient-to-tl from-green-600 to-lime-400 align-baseline font-bold uppercase leading-none text-white">En attente de confirmation de ton paiement</span>
+                                                @elseif ($bet->status == 5)
+                                                <span class="py-2.2 px-3.6 text-xs rounded-1.8 inline-block whitespace-nowrap text-center bg-gradient-to-tl from-blue-600 to-cyan-400 align-baseline font-bold uppercase leading-none text-white">Paiement en cours</span>
+                                                @elseif ($bet->status == 6)
+                                                <span class="py-2.2 px-3.6 text-xs rounded-1.8 inline-block whitespace-nowrap text-center bg-gradient-to-tl from-green-600 to-lime-400 align-baseline font-bold uppercase leading-none text-white">Tu as gagné.e !</span>
                                                 @endif
                                             </td>
                                         </tr>

@@ -26,13 +26,31 @@ class BetController extends Controller
 
     public function validateBet(Request $request, $BetID) {
         $bets = DB::table('bet')->where("id", $BetID)->get();
-        if ($bets->first()->status != 0 && $bets->first()->status != 3) return redirect()->back()->withErrors("Tu ne peux pas modifier le statut de ce pari");
+        if ($bets->first()->status != 0 && $bets->first()->status != 2 && $bets->first()->status != 4 && $bets->first()->status != 5) return redirect()->back()->withErrors("Tu ne peux pas modifier le statut de ce pari");
 
         DB::table("bet")
             ->where("id", $BetID)
             ->update(['status' => $bets->first()->status+1]);
 
-        return redirect()->back()->with('success', $bets->first()->status == 0 ? 'Le pari a été validé' : 'Le pari a été payé');
+        return redirect()->back()->with('success', 'Le pari a été modifié');
+    }
+
+    public function calculBet(Request $request) {
+        $currentCourse = DB::table("courses")->where("current", 1)->get()->first();
+        $bets = DB::table('bet')->where("course", $currentCourse->name)->get();
+        $totalWinning = DB::table('bet')->where("course", $currentCourse->name)->where("status", 4)->orWhere("status", 5)->get()->sum("montant");
+        $totalBet = $bets->sum("montant");
+
+        foreach($bets as $bet) {
+            if ($bet->status == 2 || $bet->status == 3) continue;
+            $gain = $bet->montant / $totalWinning * ($totalBet-$totalBet*0.1);
+
+            DB::table("bet")
+                ->where("id", $bet->id)
+                ->update(['paiement' => round($gain)]);
+        }
+
+        return redirect()->back()->with('success', 'Les pari ont été calculés');
     }
 
     public function pari(Request $request) {

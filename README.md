@@ -31,9 +31,11 @@ Rank :
 Statut des pari :
 - 0 : En attente du paiement du parieur
 - 1 : En attente du résultat de la course
-- 2 : Perdu
-- 3 : Victoire - En attente du paiement de l’org
-- 4 : Victoire - Paiement effectué
+- 2 : Perdu : En attente du paiement du parieur
+- 3 : Perdu
+- 4 : Victoire - En attente du paiement du parieur
+- 5 : Victoire - En attente du paiement de l’org
+- 6 : Victoire - Paiement effectué
 
 ## Bug connu
 

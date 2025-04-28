@@ -46,12 +46,24 @@ class ScoreController extends Controller
                     ->where("course", $currentCourse->name)
                     ->where("ecurie", $pilote->ecurie)
                     ->where("status", 1)
-                    ->update(['status' => 3]);
+                    ->update(['status' => 5]);
+
+                DB::table("bet")
+                    ->where("course", $currentCourse->name)
+                    ->where("ecurie", $pilote->ecurie)
+                    ->where("status", 0)
+                    ->update(['status' => 4]);
 
                 DB::table("bet")
                     ->where("course", $currentCourse->name)
                     ->where("ecurie", "!=", $pilote->ecurie)
                     ->where("status", 1)
+                    ->update(['status' => 3]);
+
+                DB::table("bet")
+                    ->where("course", $currentCourse->name)
+                    ->where("ecurie", "!=", $pilote->ecurie)
+                    ->where("status", 0)
                     ->update(['status' => 2]);
             }
         }

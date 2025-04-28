@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('course');
             $table->string('ecurie');
             $table->integer('montant');
+            $table->integer('paiement')->default(0);
             $table->integer('status')->default(0);
         });
     }
