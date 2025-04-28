@@ -93,7 +93,7 @@ class MemberController extends Controller
             ->where("id", Auth::user()->id)
             ->update(['rank' => 5, "role" => "Membre"]);
 
-        file_get_contents("http://localhost:5000/updateMember?discord=" . Auth::user()->id);
+        curl_init("http://localhost:5000/updateMember?discord=" . Auth::user()->id);
 
         return redirect()->back()->with('success', "Bienvenue au sein de l'association !");
     }
@@ -158,7 +158,7 @@ class MemberController extends Controller
                 ->update(['rank' => $request->input('rank'), 'role' => $request->input('role')]);
         }
 
-        file_get_contents("http://localhost:5000/updateMember?discord=" . Auth::user()->id);
+        curl_init("http://localhost:5000/updateMember?discord=" . Auth::user()->id);
 
         return redirect("/membres")->with('success', "Le membre a bien été modifié");
     }
@@ -173,7 +173,7 @@ class MemberController extends Controller
             ->where("id", $id)
             ->update(['rank' => 0, 'role' => ""]);
 
-        file_get_contents("http://localhost:5000/updateMember?discord=" . Auth::user()->id);
+        curl_init("http://localhost:5000/updateMember?discord=" . Auth::user()->id);
 
         return redirect("/membres")->with('success', "Le membre a bien été supprimé");
     }
