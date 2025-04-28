@@ -113,7 +113,7 @@
                       <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                           {{ $sponsor->name }}
                       </h3>
-                    <p>{{ $sponsor->description }}{{ $sponsor->partner == 1 ? "<br><b>Partenaire</b>" : "" }}</p>
+                    <p>{{ $sponsor->description }}<br><b>{{ $sponsor->partner == 1 ? "Partenaire" : "" }}</b></p>
                     <a href="/editSponsor/{{ $sponsor->id }}">
                         <button type="button" class="inline-block px-4 py-2 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Modifier</button>
                     </a>
