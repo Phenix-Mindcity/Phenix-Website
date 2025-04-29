@@ -200,7 +200,7 @@
     <section class="bg-gray-100 py-8">
       <div class="container mx-auto px-2 pt-4 pb-12 text-gray-800">
         <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
-          Sponsoring
+          Inscriptions
         </h2>
         <div class="w-full mb-4">
           <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
@@ -209,12 +209,12 @@
           <div class="flex flex-col w-5/6 lg:w-1/4 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-4">
             <div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
               <div class="p-8 text-3xl font-bold text-center border-b-4">
-                Gold Partner
+                Particulier
               </div>
               <ul class="w-full text-center text-sm">
-                <li class="border-b py-4">Logo affiché sur un véhicule</li>
-                <li class="border-b py-4"><s>Choix de l'écurie</s></li>
-                <li class="border-b py-4"><s>Choix de l'emplacement</s></li>
+                <li class="border-b py-4">Limité à une écurie</li>
+                <li class="border-b py-4"><s>Changement de pilote</s></li>
+                <li class="border-b py-4"><s>Logo affiché sur le site et dans la presse</s></li>
               </ul>
             </div>
             <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
@@ -225,13 +225,12 @@
           </div>
           <div class="flex flex-col w-5/6 lg:w-1/3 mx-auto lg:mx-0 rounded-lg bg-white mt-4 sm:-mt-6 shadow-lg z-10">
             <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-              <div class="w-full p-8 text-3xl font-bold text-center">Platinum Partner</div>
+              <div class="w-full p-8 text-3xl font-bold text-center">Entreprise</div>
               <div class="h-1 w-full gradient my-0 py-0 rounded-t"></div>
               <ul class="w-full text-center text-base font-bold">
-                <li class="border-b py-4">Logo affiché sur un véhicule</li>
-                <li class="border-b py-4">Logo et nom affichés sur notre site</li>
-                <li class="border-b py-4">Choix de l'écurie</li>
-                <li class="border-b py-4">Choix de l'emplacement</li>
+                <li class="border-b py-4">Ecurie illimité par entreprise</li>
+                <li class="border-b py-4">Changement de pilote</li>
+                <li class="border-b py-4">Logo affiché sur le site et dans la presse</li>
               </ul>
             </div>
             <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
@@ -243,12 +242,12 @@
           <div class="flex flex-col w-5/6 lg:w-1/4 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-4">
             <div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
               <div class="p-8 text-3xl font-bold text-center border-b-4">
-                Diamond Partner
+                Association
               </div>
               <ul class="w-full text-center text-sm">
-                <li class="border-b py-4">Logo affiché sur un véhicule</li>
-                <li class="border-b py-4">Choix de l'écurie</li>
-                <li class="border-b py-4"><s>Choix de l'emplacement</s></li>
+                <li class="border-b py-4">Limité à une écurie</li>
+                <li class="border-b py-4">Changement de pilote</li>
+                <li class="border-b py-4">Logo affiché sur le site et dans la presse</li>
               </ul>
             </div>
             <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
