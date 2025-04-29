@@ -212,7 +212,7 @@
                 Particulier
               </div>
               <ul class="w-full text-center text-sm">
-                <li class="border-b py-4">Limité à une écurie</li>
+                <li class="border-b py-4">1 écurie par inscription</li>
                 <li class="border-b py-4"><s>Changement de pilote</s></li>
                 <li class="border-b py-4"><s>Logo affiché sur le site et dans la presse</s></li>
               </ul>
@@ -228,7 +228,7 @@
               <div class="w-full p-8 text-3xl font-bold text-center">Entreprise</div>
               <div class="h-1 w-full gradient my-0 py-0 rounded-t"></div>
               <ul class="w-full text-center text-base font-bold">
-                <li class="border-b py-4">Ecurie illimité par entreprise</li>
+                <li class="border-b py-4">2 écuries par inscription</li>
                 <li class="border-b py-4">Changement de pilote</li>
                 <li class="border-b py-4">Logo affiché sur le site et dans la presse</li>
               </ul>
@@ -245,7 +245,7 @@
                 Association
               </div>
               <ul class="w-full text-center text-sm">
-                <li class="border-b py-4">Limité à une écurie</li>
+                <li class="border-b py-4">1 écurie par inscription</li>
                 <li class="border-b py-4">Changement de pilote</li>
                 <li class="border-b py-4">Logo affiché sur le site et dans la presse</li>
               </ul>

@@ -47,7 +47,7 @@
                   <h2 class="mb-1 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                       {{ $ecuries->where("id", $id)->first()->name }}
                   </h2>
-                  <p>{{ $score }} points</p>
+                  <p>{{ $score }} points<br>{{ $ecuries->where("id", $id)->first()->sponsor == "Aucun" ? "" : "Sponsorisé par " . $ecuries->where("id", $id)->first()->sponsor }}</p>
               </div>
               @endforeach
           </div>
