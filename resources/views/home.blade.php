@@ -260,7 +260,7 @@
           </div>
         </div>
         <p class="leading-normal text-xl mb-8 text-center">
-            Les tarifs ne sont pas fixes, pour plus d'informations, contactez-nous
+            Pour plus d'informations, contactez-nous
         </p>
       </div>
     </section>
