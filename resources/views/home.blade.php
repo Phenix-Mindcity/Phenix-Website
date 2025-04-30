@@ -32,6 +32,11 @@
             Phenix
           </div>
         </div>
+          <a href="/dashboard" class="items-right toggleColour">
+              <button id="navBtn" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                Se connecter
+              </button>
+          </a>
       </div>
     </nav>
     <!--Hero-->
@@ -319,7 +324,7 @@
     </svg>
     <section class="container mx-auto text-center py-6 mb-12">
       <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-white">
-        Motivé.e ?
+        Dashboard
       </h2>
       <div class="w-full mb-4">
         <div class="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
@@ -375,6 +380,7 @@
       var header = document.getElementById("header");
       var white_nav_logo = document.getElementById("white_nav_logo");
       var purple_nav_logo = document.getElementById("purple_nav_logo");
+      var navBtn = document.getElementById("navBtn");
       var toToggle = document.querySelectorAll(".toggleColour");
 
       document.addEventListener("scroll", function () {
@@ -385,6 +391,10 @@
           header.classList.add("bg-white");
           white_nav_logo.classList.add("hidden");
           purple_nav_logo.classList.remove("hidden");
+
+          navBtn.classList.add("bg-btn");
+          navBtn.classList.remove("bg-white");
+
           //Use to switch toggleColour colours
           for (var i = 0; i < toToggle.length; i++) {
             toToggle[i].classList.add("text-color-title");
@@ -395,6 +405,10 @@
           header.classList.remove("bg-white");
           purple_nav_logo.classList.add("hidden");
           white_nav_logo.classList.remove("hidden");
+
+          navBtn.classList.remove("bg-btn");
+          navBtn.classList.add("bg-white");
+
           //Use to switch toggleColour colours
           for (var i = 0; i < toToggle.length; i++) {
             toToggle[i].classList.add("text-white");
@@ -411,6 +425,11 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+        }
+
+        .bg-btn {
+            background: linear-gradient(90deg, #860f6c 0%, #d74985 100%);
+            color: white;
         }
     </style>
   </body>
