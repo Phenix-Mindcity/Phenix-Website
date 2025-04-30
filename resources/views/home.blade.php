@@ -102,7 +102,7 @@
 
               @if ($courses->where("name", "Rallye")->first()->date != null)
               <br><br>
-              <b>Date : {{ \Carbon\Carbon::parse($courses->where("name", "Rallye")->first()->date)->translatedFormat('d F Y à H:i'); }}</b>
+              <b>Date : {{ $courses->where("name", "Rallye")->first()->current == 1 ? \Carbon\Carbon::parse($courses->where("name", "Rallye")->first()->date)->translatedFormat('d F Y à H:i') : ucfirst(\Carbon\Carbon::parse($courses->where("name", "Rallye")->first()->date)->translatedFormat('F Y')); }}</b>
               @endif
             </p>
           </div>
@@ -126,7 +126,7 @@
 
                 @if ($courses->where("name", "Ring Of Hell")->first()->date != null)
                 <br><br>
-                <b>Date : {{ \Carbon\Carbon::parse($courses->where("name", "Ring Of Hell")->first()->date)->translatedFormat('d F Y à H:i'); }}</b>
+              <b>Date : {{ $courses->where("name", "Ring Of Hell")->first()->current == 1 ? \Carbon\Carbon::parse($courses->where("name", "Ring Of Hell")->first()->date)->translatedFormat('d F Y à H:i') : ucfirst(\Carbon\Carbon::parse($courses->where("name", "Ring Of Hell")->first()->date)->translatedFormat('F Y')); }}</b>
                 @endif
               </p>
             </div>
@@ -143,7 +143,7 @@
               Le moteur qui ronronne, les pneus qui agrippe le bitume, la ville est notre terrain de jeu.
               @if ($courses->where("name", "Street Race")->first()->date != null)
               <br><br>
-              <b>Date : {{ \Carbon\Carbon::parse($courses->where("name", "Street Race")->first()->date)->translatedFormat('d F Y à H:i'); }}</b>
+              <b>Date : {{ $courses->where("name", "Street Race")->first()->current == 1 ? \Carbon\Carbon::parse($courses->where("name", "Street Race")->first()->date)->translatedFormat('d F Y à H:i') : ucfirst(\Carbon\Carbon::parse($courses->where("name", "Street Race")->first()->date)->translatedFormat('F Y')); }}</b>
               @endif
             </p>
           </div>
@@ -169,7 +169,7 @@
 
                 @if ($courses->where("name", "F1")->first()->date != null)
                 <br><br>
-                <b>Date : {{ \Carbon\Carbon::parse($courses->where("name", "F1")->first()->date)->translatedFormat('d F Y à H:i'); }}</b>
+              <b>Date : {{ $courses->where("name", "F1")->first()->current == 1 ? \Carbon\Carbon::parse($courses->where("name", "F1")->first()->date)->translatedFormat('d F Y à H:i') : ucfirst(\Carbon\Carbon::parse($courses->where("name", "F1")->first()->date)->translatedFormat('F Y')); }}</b>
                 @endif
               </p>
             </div>
@@ -187,7 +187,7 @@
 
               @if ($courses->where("name", "Truck")->first()->date != null)
               <br><br>
-              <b>Date : {{ \Carbon\Carbon::parse($courses->where("name", "Truck")->first()->date)->translatedFormat('d F Y à H:i'); }}</b>
+              <b>Date : {{ $courses->where("name", "Truck")->first()->current == 1 ? \Carbon\Carbon::parse($courses->where("name", "Truck")->first()->date)->translatedFormat('d F Y à H:i') : ucfirst(\Carbon\Carbon::parse($courses->where("name", "Truck")->first()->date)->translatedFormat('F Y')); }}</b>
               @endif
             </p>
           </div>
@@ -213,13 +213,12 @@
               </div>
               <ul class="w-full text-center text-sm">
                 <li class="border-b py-4">1 écurie par inscription</li>
-                <li class="border-b py-4"><s>Changement de pilote</s></li>
                 <li class="border-b py-4"><s>Logo affiché sur le site et dans la presse</s></li>
               </ul>
             </div>
             <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
               <div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">
-                $ ??
+                $ 5 000
               </div>
             </div>
           </div>
@@ -229,13 +228,12 @@
               <div class="h-1 w-full gradient my-0 py-0 rounded-t"></div>
               <ul class="w-full text-center text-base font-bold">
                 <li class="border-b py-4">2 écuries par inscription</li>
-                <li class="border-b py-4">Changement de pilote</li>
                 <li class="border-b py-4">Logo affiché sur le site et dans la presse</li>
               </ul>
             </div>
             <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
               <div class="w-full pt-6 text-4xl font-bold text-center">
-                $ ??
+                $ 20 000
               </div>
             </div>
           </div>
@@ -246,13 +244,12 @@
               </div>
               <ul class="w-full text-center text-sm">
                 <li class="border-b py-4">1 écurie par inscription</li>
-                <li class="border-b py-4">Changement de pilote</li>
                 <li class="border-b py-4">Logo affiché sur le site et dans la presse</li>
               </ul>
             </div>
             <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
               <div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">
-                $ ??
+                $ 10 000
               </div>
             </div>
           </div>
