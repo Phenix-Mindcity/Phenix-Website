@@ -113,8 +113,8 @@
                                     </tbody>
                                 </table>
                                 @if (auth()->user()->rank >= 10)
-                                <a href="/calculBet">
-                                    <button type="button" class="mt-4 inline-block px-4 py-2 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-purple-700 to-pink-500 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Faire le calcul des pari</button>
+                                <a href="/calculBet" class=" mx-0 min-w-full flex flex-col items-center">
+                                    <button type="button" class="mt-4 inline-block px-4 py-3 font-bold text-center text-white uppercase align-middle transition-all rounded-lg cursor-pointer bg-gradient-to-tl from-slate-600 to-slate-300 leading-pro text-xs ease-soft-in tracking-tight-soft shadow-soft-md bg-150 bg-x-25 hover:scale-102 active:opacity-85 hover:shadow-soft-xs">Faire le calcul des pari</button>
                                 </a>
                                 @endif
                             </div>
