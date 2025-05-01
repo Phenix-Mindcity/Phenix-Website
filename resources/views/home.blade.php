@@ -33,7 +33,7 @@
           </div>
         </div>
           <a href="/dashboard" class="items-right toggleColour">
-              <button id="navBtn" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+              <button id="navBtn" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                 Se connecter
               </button>
           </a>
@@ -261,8 +261,10 @@
             </div>
           </div>
         </div>
-        <p class="leading-normal text-xl mb-8 text-center">
-            Pour plus d'informations, contactez-nous
+        <p class="leading-normal text-l text-center">
+            L'inscription est gratuite pour un pilote, tant qu'il est dans une écurie.<br>Les pilotes sans écuries peuvent se proposer en remplaçant
+            <br><br>
+            Pour vous inscrire, contactez-nous par téléphone
         </p>
       </div>
     </section>
@@ -326,13 +328,13 @@
     </svg>
     <section class="container mx-auto text-center py-6 mb-12">
       <h2 class="w-full my-2 text-5xl font-bold leading-tight text-center text-white">
-        Dashboard
+        Connecte-toi !
       </h2>
       <div class="w-full mb-4">
         <div class="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
       </div>
       <h3 class="my-4 text-3xl leading-tight">
-        Connecte-toi pour accéder à toutes les fonctionnalités !
+        Pour accéder aux score, pari et résultats
       </h3>
       <a href="/dashboard">
           <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
@@ -353,10 +355,10 @@
             <small>Ce site est destiné à du jeu de rôle sur le serveur GTA RP <a href="https://discord.gg/mindcityrp"><b>MindCity</b></a><br>Ce site n'est pas développé ou maintenu par Mindcity, géré par ImLacy_ (Discord)</small>
           </div>
           <div class="flex-1">
-            <p class="uppercase text-gray-500 md:mb-6">À propos de nous</p>
+            <p class="uppercase text-gray-500 md:mb-6">Association Phenix</p>
             <ul class="list-reset mb-6">
               <li class="mt-2 inline-block mr-2 md:block md:mr-0">
-                <div class="text-gray-800">Twitter : @Phenix</div>
+                <div class="text-gray-800"><a target="_blank" href="https://discord.gg/b6YntEPFCP">Accéder à notre intranet</a></div>
               </li>
               <li class="mt-2 inline-block mr-2 md:block md:mr-0">
                 <div class="text-gray-800"><a target="_blank" href="https://github.com/Phenix-Mindcity/Phenix-Website">Code source du site</a></div>
@@ -367,7 +369,7 @@
             </ul>
           </div>
           <div class="flex-1">
-            <p class="uppercase text-gray-500 md:mb-6">On parle de nous</p>
+            <p class="uppercase text-gray-500 md:mb-6"></p>
             <ul class="list-reset mb-6">
               <!--<li class="mt-2 inline-block mr-2 md:block md:mr-0">
                 <a href="#" class="no-underline hover:underline text-gray-800 hover:text-pink-500">FAQ</a>
