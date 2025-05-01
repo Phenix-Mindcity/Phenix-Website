@@ -33,7 +33,7 @@
           </div>
         </div>
           <a href="/dashboard" class="items-right toggleColour">
-              <button id="navBtn" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+              <button id="navBtn" class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 mt-2 font-bold rounded-full py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
                 Se connecter
               </button>
           </a>
