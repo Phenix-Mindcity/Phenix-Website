@@ -98,7 +98,7 @@
               Rallye
             </h3>
             <p class="text-gray-600 mb-8">
-              Un cinq cylindre de 450 chevaux, 4 roues motrices, le 0 à 100 km/h abbatu en 3.8 secondes.
+              Un quatre cylindre de 450 chevaux, 4 roues motrices, le 0 à 100 km/h abbatu en 3.8 secondes.
               <br><br>
               Le tout dans des chemins de terre, en enchainant les virages, à quelques mètres du vide
               <br>
