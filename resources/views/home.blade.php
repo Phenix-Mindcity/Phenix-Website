@@ -56,7 +56,7 @@
         <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
           <p class="uppercase tracking-loose w-full">Phenix Fivefold Crown</p>
           <h1 class="my-4 text-5xl font-bold leading-tight">
-            L'événement automobile de l'année !
+            L'Événement automobile de l'année !
           </h1>
           <p class="leading-normal text-2xl mb-8">
             5 épreuves, 5 catégories, un titre à gagner.
@@ -112,7 +112,7 @@
             </p>
           </div>
           <div class="w-full sm:w-1/2 p-6">
-            <img src="{{ url('storage/img/courses/rally.webp') }}">
+            <img src="{{ url('storage/img/courses/Rallye.jpg') }}"> 1410 768
           </div>
         </div>
         <div class="flex flex-wrap flex-col-reverse sm:flex-row">
@@ -153,7 +153,7 @@
             </p>
           </div>
           <div class="w-full sm:w-1/2 p-6">
-            <img src="{{ url('storage/img/courses/streetrace.webp') }}">
+            <img src="{{ url('storage/img/courses/StreetRace.jpg') }}">
           </div>
         </div>
         <div class="flex flex-wrap flex-col-reverse sm:flex-row">
