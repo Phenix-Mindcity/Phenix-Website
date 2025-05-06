@@ -158,7 +158,7 @@
         </div>
         <div class="flex flex-wrap flex-col-reverse sm:flex-row">
           <div class="w-full sm:w-1/2 p-6 mt-6">
-            <img src="{{ url('storage/img/courses/f1.webp') }}">
+            <img src="{{ url('storage/img/courses/F1.png') }}">
           </div>
           <div class="w-full sm:w-1/2 p-6 mt-6">
             <div class="align-middle">
