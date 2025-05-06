@@ -56,7 +56,7 @@ class BetController extends Controller
     public function pari(Request $request) {
         $courses = DB::table("courses")->get();
         $bets = DB::table('bet')->where("discord", Auth::user()->id)->get();
-        $ecuries = DB::table('ecurie')->get();
+        $ecuries = DB::table('ecurie')->where("inscrite", 1)->get();
 
         return View::make("dashboard.pari")->with([
             "bets"=>$bets,

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('sponsor')->default("Aucun");
+            $table->string('inscrite')->default(1);
             $table->string('fileName')->default("");
         });
     }

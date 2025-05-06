@@ -59,6 +59,7 @@ class EcurieController extends Controller
                 'id' => $id,
                 'name' => $request->input('name'),
                 'sponsor' => $request->input('sponsor'),
+                'inscrite' => $request->input('inscrite'),
                 'fileName' => $id . "." . $file->getClientOriginalExtension(),
             ]);
 
@@ -108,7 +109,7 @@ class EcurieController extends Controller
 
             DB::table("ecurie")
                 ->where("id", $id)
-                ->update(['name' => $request->input('name'), 'sponsor' => $request->input('sponsor'), 'fileName'=> $id . "." . $file->getClientOriginalExtension()]);
+                ->update(['name' => $request->input('name'), 'inscrite' => $request->input('inscrite'), 'sponsor' => $request->input('sponsor'), 'fileName'=> $id . "." . $file->getClientOriginalExtension()]);
         } else {
             $rules = array(
                 'name' => 'required',
@@ -128,7 +129,7 @@ class EcurieController extends Controller
 
             DB::table("ecurie")
                 ->where("id", $id)
-                ->update(['name' => $request->input('name'), 'sponsor' => $request->input('sponsor')]);
+                ->update(['name' => $request->input('name'), 'inscrite' => $request->input('inscrite'), 'sponsor' => $request->input('sponsor')]);
         }
 
         if ($actualEcurie->name != $request->input('name')) {

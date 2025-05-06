@@ -64,7 +64,14 @@
                                         @endforeach
                                       </select>
                                   </div>
-                                  <div class="w-full max-w-full shrink-0 md:w-full md:flex-0 px-3">
+                                  <div class="w-full max-w-full shrink-0 md:w-6/12 md:flex-0 px-3">
+                                      <label for="inscrite" class="mb-2 ml-1 font-bold text-xs text-slate-700">Inscrire l'écurie</label>
+                                      <select required name="inscrite" class="focus:shadow-soft-primary-outline text-sm leading-5.6 ease-soft block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-fuchsia-300 focus:outline-none">
+                                        <option value="1">Inscrite</option>
+                                        <option value="0">Non Inscrite</option>
+                                      </select>
+                                  </div>
+                                  <div class="w-full max-w-full shrink-0 md:w-6/12 md:flex-0 px-3">
                                       <label for="logo" class="mb-2 ml-1 font-bold text-xs text-slate-700">Logo</label>
                                       <input name="logo" dropzone type="file" placeholder="Envoyer le fichier..." class="dark:bg-slate-900 dark:text-white dark:bg-gray-950 mb-4 focus:shadow-primary-outline dark:placeholder:text-white/80 dark:text-white/80 text-sm leading-5.6 ease block w-full appearance-none rounded-lg border border-solid border-gray-300 bg-white bg-clip-padding px-3 py-2 font-normal text-gray-700 outline-none transition-all placeholder:text-gray-500 focus:border-blue-500 focus:outline-none">                            </div>
                                   </div>
