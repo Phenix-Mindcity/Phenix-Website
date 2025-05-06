@@ -107,7 +107,7 @@
 
               @if ($courses->where("name", "Rallye")->first()->date != null)
               <br><br>
-              <b>Date : {{ $courses->where("name", "Rallye")->first()->current == 1 ? \Carbon\Carbon::parse($courses->where("name", "Rallye")->first()->date)->translatedFormat('d F Y à H:i') : ucfirst(\Carbon\Carbon::parse($courses->where("name", "Rallye")->first()->date)->translatedFormat('F Y')); }}</b>
+              <b>{{ $courses->where("name", "Rallye")->first()->current == 1 ? 'Date : ' . \Carbon\Carbon::parse($courses->where("name", "Rallye")->first()->date)->translatedFormat('d F Y à H:i') : 'Prévu en ' . \Carbon\Carbon::parse($courses->where("name", "Rallye")->first()->date)->translatedFormat('F Y'); }}</b>
               @endif
             </p>
           </div>
@@ -125,13 +125,13 @@
                 Ring Of Hell
               </h3>
               <p class="text-gray-600 mb-8">
-                Un cercle sans fin, tournez sans jamais revenir en arrière, et priez que le sors vous soit favorable
+                Un cercle sans fin, détruisez vos adversaires, et priez que le sors vous soit favorable
                 <br><br>
                 Le dernier moteur qui tourne, sera couronné gagnant.
 
                 @if ($courses->where("name", "Ring Of Hell")->first()->date != null)
                 <br><br>
-              <b>Date : {{ $courses->where("name", "Ring Of Hell")->first()->current == 1 ? \Carbon\Carbon::parse($courses->where("name", "Ring Of Hell")->first()->date)->translatedFormat('d F Y à H:i') : ucfirst(\Carbon\Carbon::parse($courses->where("name", "Ring Of Hell")->first()->date)->translatedFormat('F Y')); }}</b>
+              <b>{{ $courses->where("name", "Ring Of Hell")->first()->current == 1 ? 'Date : ' . \Carbon\Carbon::parse($courses->where("name", "Ring Of Hell")->first()->date)->translatedFormat('d F Y à H:i') : 'Prévu en ' . \Carbon\Carbon::parse($courses->where("name", "Ring Of Hell")->first()->date)->translatedFormat('F Y'); }}</b>
                 @endif
               </p>
             </div>
@@ -148,7 +148,7 @@
               Le moteur qui ronronne, les pneus qui agrippe le bitume, la ville est notre terrain de jeu.
               @if ($courses->where("name", "Street Race")->first()->date != null)
               <br><br>
-              <b>Date : {{ $courses->where("name", "Street Race")->first()->current == 1 ? \Carbon\Carbon::parse($courses->where("name", "Street Race")->first()->date)->translatedFormat('d F Y à H:i') : ucfirst(\Carbon\Carbon::parse($courses->where("name", "Street Race")->first()->date)->translatedFormat('F Y')); }}</b>
+              <b>{{ $courses->where("name", "Street Race")->first()->current == 1 ? 'Date : ' . \Carbon\Carbon::parse($courses->where("name", "Street Race")->first()->date)->translatedFormat('d F Y à H:i') : 'Prévu en ' . \Carbon\Carbon::parse($courses->where("name", "Street Race")->first()->date)->translatedFormat('F Y'); }}</b>
               @endif
             </p>
           </div>
@@ -166,15 +166,13 @@
                 F1
               </h3>
               <p class="text-gray-600 mb-8">
-                Oui oui, vous avez bien lu, une Formule 1, pas une petite Formule 2, non, on veux le meilleur ici.
-                <br><br>
                 Posé.e dans le cockpit, les yeux rivées sur la piste, le V12 qui crie de toutes ses forces, soyez prêt.e
                 <br><br>
                 <small>Avec un peu de chance, vous croiserez un Espace sur la piste</small>
 
                 @if ($courses->where("name", "F1")->first()->date != null)
                 <br><br>
-              <b>Date : {{ $courses->where("name", "F1")->first()->current == 1 ? \Carbon\Carbon::parse($courses->where("name", "F1")->first()->date)->translatedFormat('d F Y à H:i') : ucfirst(\Carbon\Carbon::parse($courses->where("name", "F1")->first()->date)->translatedFormat('F Y')); }}</b>
+                 <b>{{ $courses->where("name", "F1")->first()->current == 1 ? 'Date : ' . \Carbon\Carbon::parse($courses->where("name", "F1")->first()->date)->translatedFormat('d F Y à H:i') : 'Prévu en ' . \Carbon\Carbon::parse($courses->where("name", "F1")->first()->date)->translatedFormat('F Y'); }}</b>
                 @endif
               </p>
             </div>
@@ -183,21 +181,21 @@
         <div class="flex flex-wrap">
           <div class="w-5/6 sm:w-1/2 p-6">
             <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-              Truck Battle
+              👀 Surprise
             </h3>
             <p class="text-gray-600 mb-8">
               J'aurais aimée vous teaser, vous dire à quel point ce sera incroyable, mais pourquoi tout spoiler ?
               <br><br>
-              Je dirais seulement 2 mots : Aucune règle.
+              Vous découvrirez l'épreuve, le jour de la course !
 
               @if ($courses->where("name", "Truck")->first()->date != null)
               <br><br>
-              <b>Date : {{ $courses->where("name", "Truck")->first()->current == 1 ? \Carbon\Carbon::parse($courses->where("name", "Truck")->first()->date)->translatedFormat('d F Y à H:i') : ucfirst(\Carbon\Carbon::parse($courses->where("name", "Truck")->first()->date)->translatedFormat('F Y')); }}</b>
+              <b>{{ $courses->where("name", "Truck")->first()->current == 1 ? 'Date : ' . \Carbon\Carbon::parse($courses->where("name", "Truck")->first()->date)->translatedFormat('d F Y à H:i') : 'Prévu en ' . \Carbon\Carbon::parse($courses->where("name", "Truck")->first()->date)->translatedFormat('F Y'); }}</b>
               @endif
             </p>
           </div>
           <div class="w-full sm:w-1/2 p-6">
-            <img src="{{ url('storage/img/courses/truck.webp') }}">
+
           </div>
         </div>
       </div>
