@@ -235,7 +235,7 @@
                   Entreprise
               </div>
               <div class="h-1 w-full gradient my-0 py-0 rounded-t"></div>
-              <ul class="w-full text-center text-base font-bold">
+              <ul class="w-full text-center text-base">
                 <li class="border-b py-4">2 écuries par inscription</li>
                 <li class="border-b py-4">Logo affiché dans les scores</li>
                 <li class="border-b py-4">Logo affiché dans l'onglet "Partenaire"<br><span class="text-xs mt-4 font-normal">Pour une inscription sur l'année uniquement</span></li>
