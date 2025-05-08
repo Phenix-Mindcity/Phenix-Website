@@ -210,18 +210,22 @@
         </div>
         <div class="flex flex-col sm:flex-row justify-center pt-12 my-12 sm:my-4">
           <div class="flex flex-col w-5/6 lg:w-1/4 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-4">
-            <div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
-              <div class="p-8 text-3xl font-bold text-center border-b-4">
-                Particulier
+            <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+              <div class="w-full p-8 text-3xl font-bold text-center">
+                  Particulier
               </div>
+              <div class="h-1 w-full gradient my-0 py-0 rounded-t"></div>
               <ul class="w-full text-center text-sm">
                 <li class="border-b py-4">1 écurie par inscription</li>
-                <li class="border-b py-4"><s>Logo affiché sur le site et dans la presse</s></li>
+                <li class="border-b py-4"><s>Logo affiché dans les scores</s></li>
               </ul>
             </div>
             <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-              <div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">
-                $ 5 000
+              <div class="w-full pt-6 text-l text-center">
+                <ul class="w-full text-center text-base">
+                  <li class="border-b py-2"><span class="text-2xl font-bold">20 000 $</span><br> pour toute la compétition</li>
+                  <li class="py-2"><span class="text-2xl font-bold">5 000 $</span><br> pour une course</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -233,28 +237,36 @@
               <div class="h-1 w-full gradient my-0 py-0 rounded-t"></div>
               <ul class="w-full text-center text-base font-bold">
                 <li class="border-b py-4">2 écuries par inscription</li>
-                <li class="border-b py-4">Logo affiché sur le site et dans la presse</li>
+                <li class="border-b py-4">Logo affiché dans les scores</li>
+                <li class="border-b py-4">Logo affiché dans l'onglet "Partenaire"<br><span class="text-xs mt-4 font-normal">Pour une inscription sur l'année uniquement</span></li>
               </ul>
             </div>
-            <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-              <div class="w-full pt-6 text-4xl font-bold text-center">
-                $ 20 000
+            <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden p-6">
+              <div class="w-full text-l text-center">
+                <ul class="w-full text-center text-base">
+                  <li class="border-b py-2"><span class="text-2xl font-bold">60 000 $</span><br> pour toute la compétition</li>
+                  <li class="py-2"><span class="text-2xl font-bold">15 000 $</span><br> pour une course</li>
+                </ul>
               </div>
             </div>
           </div>
           <div class="flex flex-col w-5/6 lg:w-1/4 mx-auto lg:mx-0 rounded-none lg:rounded-l-lg bg-white mt-4">
-            <div class="flex-1 bg-white text-gray-600 rounded-t rounded-b-none overflow-hidden shadow">
-              <div class="p-8 text-3xl font-bold text-center border-b-4">
-                Organisation
+            <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
+              <div class="w-full p-8 text-3xl font-bold text-center">
+                  Organisation
               </div>
+              <div class="h-1 w-full gradient my-0 py-0 rounded-t"></div>
               <ul class="w-full text-center text-sm">
                 <li class="border-b py-4">1 écurie par inscription</li>
-                <li class="border-b py-4">Logo affiché sur le site et dans la presse</li>
+                <li class="border-b py-4">Logo affiché dans les scores</li>
               </ul>
             </div>
             <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-              <div class="w-full pt-6 text-3xl text-gray-600 font-bold text-center">
-                $ 10 000
+              <div class="w-full pt-6 text-l text-center">
+                <ul class="w-full text-center text-base">
+                  <li class="border-b py-2"><span class="text-2xl font-bold">40 000 $</span><br> pour toute la compétition</li>
+                  <li class="py-2"><span class="text-2xl font-bold">10 000 $</span><br> pour une course</li>
+                </ul>
               </div>
             </div>
           </div>
