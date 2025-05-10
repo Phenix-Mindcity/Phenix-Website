@@ -43,7 +43,7 @@ class BetController extends Controller
 
         foreach($bets as $bet) {
             if ($bet->status == 2 || $bet->status == 3) continue;
-            $gain = $bet->montant / $totalWinning * ($totalBet-$totalBet*0.05);
+            $gain = $bet->montant / $totalWinning * ($totalBet-$totalBet*0.00);
 
             DB::table("bet")
                 ->where("id", $bet->id)
