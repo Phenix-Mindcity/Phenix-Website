@@ -220,7 +220,7 @@
                 <li class="border-b py-4"><s>Logo affiché dans les scores</s></li>
               </ul>
             </div>
-            <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+            <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden p-6">
               <div class="w-full pt-6 text-l text-center">
                 <ul class="w-full text-center text-base">
                   <li class="border-b py-2"><span class="text-2xl font-bold">20 000 $</span><br> pour toute la compétition</li>
@@ -238,7 +238,6 @@
               <ul class="w-full text-center text-base">
                 <li class="border-b py-4">2 écuries par inscription</li>
                 <li class="border-b py-4">Logo affiché dans les scores</li>
-                <li class="border-b py-4">Logo affiché dans l'onglet "Partenaire"<br><span class="text-xs mt-4 font-normal">Pour une inscription sur l'année uniquement</span></li>
               </ul>
             </div>
             <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden p-6">
@@ -261,7 +260,7 @@
                 <li class="border-b py-4">Logo affiché dans les scores</li>
               </ul>
             </div>
-            <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
+            <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden p-6">
               <div class="w-full pt-6 text-l text-center">
                 <ul class="w-full text-center text-base">
                   <li class="border-b py-2"><span class="text-2xl font-bold">40 000 $</span><br> pour toute la compétition</li>
