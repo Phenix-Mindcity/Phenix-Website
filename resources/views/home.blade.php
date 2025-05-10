@@ -271,7 +271,9 @@
           </div>
         </div>
         <p class="leading-normal text-l text-center">
-            L'inscription est gratuite pour un pilote, tant qu'il est dans une écurie.<br>Les pilotes sans écuries peuvent se proposer en remplaçant
+            L'inscription est gratuite pour un pilote, mais il doit être dans une écurie pour participer
+            <br>Les pilotes sans écuries peuvent se proposer en remplaçant
+            <br>Les pilotes doivent s'inscrire à minima 24h avant, et passer leur certificat médical <b>plus d'une semaine avant la course.</b>
             <br><br>
             Pour vous inscrire, contactez-nous par téléphone
         </p>
