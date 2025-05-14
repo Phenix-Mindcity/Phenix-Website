@@ -282,7 +282,7 @@
     <section class="bg-white">
       <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
           <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
-              <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Nos partenaires</h2>
+              <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Nos sponsors</h2>
           </div>
           <div class="flex flex-wrap items-center justify-center">
               @foreach ($sponsors as $sponsor)
